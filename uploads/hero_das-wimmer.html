@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Das Wimmer · Hero-Referenz (1:1 nach Vorlage)</title>
+<!--
+  DAS WIMMER · Hero-Section, 1:1 nach Screenrecording-Referenz (Alder Park)
+
+  Ablauf exakt wie die Vorlage:
+  1) BUILD-UP (Preloader, Overlay): Meta-Zeile oben (Claim links, Ort rechts),
+     Wortmarke mittig-links, darunter eine Hairline, die als Fortschrittsbalken
+     von links mitwaechst, unten rechts riesiger Serif-Zaehler 0 bis 100 %.
+     Bei 100 % faehrt das Overlay als Curtain nach oben.
+  2) HERO (Zwei-Spalten-Layout): Headline links oben (grosser Serif, eine Zeile)
+     mit kleiner Subline darunter. Rechts ein Bild in voller Hoehe der Hero.
+     Links unter der Headline ein kleineres Bild, daneben ein Stat-Block
+     (grosse Serif-Zahl + Label) und ein dunkler Button mit Pfeil.
+  3) Danach beim Scroll: Mikro-Label + Intro-Absatz, dann Full-width-Bild mit Clip-Reveal.
+
+  Fonts: Cormorant (Display-Serif), Marcellus (Caps/Nav), Instrument Sans (Grotesk).
+  Platzhalter ersetzen: Emblem-SVG durch echtes Logo, Espresso-Flaechen durch echte Bilder.
+  Keine Pills, keine Schatten, Radius 0.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300&family=Marcellus&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ivory:    #EFEBE4;
+    --paper:    #F6F3ED;
+    --espresso: #2C2620;
+    --ink:      #1B1712;
+    --ink-soft: #6E675E;
+    --gold:     #C08A2D;
+    --line:     rgba(27, 23, 18, 0.16);
+    --pad-x:    clamp(24px, 3.6vw, 72px);
+    --ease:     cubic-bezier(0.25, 1, 0.25, 1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--ivory);
+    color: var(--ink);
+    font-family: "Instrument Sans", sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+
+  .micro {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  /* ============ 1) BUILD-UP / PRELOADER (Overlay) ============ */
+  .preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: var(--ivory);
+    display: flex;
+    flex-direction: column;
+    padding: 26px var(--pad-x);
+    transition: transform 1.1s var(--ease);
+  }
+  .preloader.done { transform: translateY(-100%); }
+  .pre-meta { display: flex; justify-content: space-between; gap: 24px; }
+
+  .pre-mark { margin-top: auto; }
+  .pre-mark .das {
+    font-family: "Marcellus", serif;
+    font-size: 13px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .pre-mark .wimmer {
+    font-family: "Cormorant", serif;
+    font-weight: 300;
+    font-size: clamp(34px, 3.4vw, 52px);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  /* Fortschritt: faint Hairline in voller Breite, dunkle Linie waechst mit dem Zaehler */
+  .pre-progress {
+    position: relative;
+    height: 1px;
+    background: var(--line);
+    margin-top: 22px;
+  }
+  .pre-progress i {
+    position: absolute;
+    inset: 0;
+    background: var(--ink);
+    transform: scaleX(0);
+    transform-origin: left center;
+  }
+  .pre-counter {
+    margin-top: auto;
+    align-self: flex-end;
+    font-family: "Cormorant", serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(96px, 13vw, 200px);
+    line-height: 0.85;
+    font-variant-numeric: oldstyle-nums;
+  }
+
+  /* ============ NAVIGATION ============ */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px var(--pad-x);
+    border-bottom: 1px solid var(--line);
+  }
+  .brand { display: flex; align-items: center; gap: 16px; text-decoration: none; color: var(--ink); }
+  .brand svg { height: 44px; width: auto; display: block; }
+  .brand-name {
+    font-family: "Marcellus", serif;
+    font-size: 15px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+  }
+  nav { display: flex; gap: clamp(24px, 3vw, 56px); }
+  nav a, .cta {
+    font-family: "Marcellus", serif;
+    font-size: 12.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink);
+    position: relative;
+  }
+  nav a::after, .cta::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: -6px;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width 0.5s var(--ease);
+  }
+  nav a:hover::after, .cta:hover::after { width: 100%; }
+  .cta::after { width: 100%; background: var(--ink); }
+  .cta:hover::after { background: var(--gold); }
+
+  /* ============ 2) HERO: Headline links, Bild rechts volle Hoehe, Bild links darunter ============ */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr minmax(320px, 36vw);
+    min-height: calc(100svh - 89px);
+  }
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    padding: clamp(32px, 4.5vh, 64px) clamp(28px, 3vw, 56px) clamp(32px, 4.5vh, 64px) var(--pad-x);
+  }
+  .hero-title {
+    font-family: "Cormorant", serif;
+    font-weight: 300;
+    font-size: clamp(52px, 7.2vw, 118px);
+    letter-spacing: 0.1em;
+    line-height: 0.95;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .hero-sub {
+    margin-top: clamp(14px, 1.8vh, 24px);
+    max-width: 440px;
+    color: var(--ink-soft);
+  }
+  /* Zeilen-Maske fuer den Stagger-Reveal nach dem Build-up */
+  .mask { overflow: hidden; display: block; }
+  .mask > span {
+    display: block;
+    transform: translateY(110%);
+    transition: transform 1.1s var(--ease);
+  }
+  .is-in .mask > span { transform: translateY(0); }
+
+  /* Untere Reihe links: kleines Bild + Stat-Block + Button */
+  .hero-row {
+    margin-top: auto;
+    padding-top: clamp(28px, 4vh, 56px);
+    display: flex;
+    align-items: flex-end;
+    gap: clamp(28px, 3vw, 56px);
+  }
+  .hero-thumb {
+    width: min(300px, 34%);
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+  .hero-thumb .ph, .hero-right .ph {
+    width: 100%; height: 100%;
+    background: var(--espresso);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; padding: 12px;
+  }
+  .ph span { color: rgba(237, 232, 223, 0.6); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; }
+  .hero-thumb img, .hero-right img { width: 100%; height: 100%; object-fit: cover; }
+
+  .hero-stat { display: flex; flex-direction: column; gap: 6px; }
+  .hero-stat .num-row { display: flex; align-items: baseline; gap: 16px; }
+  .hero-stat .num {
+    font-family: "Cormorant", serif;
+    font-weight: 300;
+    font-size: clamp(44px, 4.6vw, 72px);
+    line-height: 1;
+    font-variant-numeric: oldstyle-nums;
+  }
+  .hero-stat .lbl { max-width: 130px; font-size: 13px; line-height: 1.35; color: var(--ink); }
+  .hero-stat .tag { margin-top: 14px; }
+  .btn {
+    margin-top: 12px;
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--espresso);
+    color: #EDE8DF;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 13px 22px;
+    transition: background 0.4s var(--ease);
+  }
+  .btn:hover { background: var(--ink); }
+  .btn .arrow { display: inline-block; transition: transform 0.4s var(--ease); }
+  .btn:hover .arrow { transform: translateX(6px); }
+
+  /* Rechte Spalte: Bild in voller Hoehe der Hero */
+  .hero-right { position: relative; overflow: hidden; }
+  .hero-right .inner {
+    position: absolute;
+    inset: 0;
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path 1.3s var(--ease) 0.15s;
+  }
+  .is-in .hero-right .inner { clip-path: inset(0 0 0 0); }
+
+  /* Clip-Reveal fuer das kleine Bild links */
+  .hero-thumb .inner {
+    width: 100%; height: 100%;
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 1.2s var(--ease) 0.45s;
+  }
+  .is-in .hero-thumb .inner { clip-path: inset(0 0 0 0); }
+
+  /* Fade fuer Sub, Stat, Button */
+  .fade {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.9s var(--ease) 0.5s, transform 0.9s var(--ease) 0.5s;
+  }
+  .is-in .fade { opacity: 1; transform: none; }
+
+  /* ============ 3) INTRO-ABSATZ + FULL-WIDTH VISUAL (Scroll-Fortsetzung) ============ */
+  .intro {
+    padding: clamp(72px, 12vh, 140px) var(--pad-x);
+    max-width: 860px;
+  }
+  .intro p {
+    margin-top: 22px;
+    font-size: clamp(20px, 2vw, 28px);
+    line-height: 1.45;
+    color: var(--ink);
+  }
+  .visual-frame {
+    height: min(92svh, 900px);
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path 1.4s var(--ease);
+  }
+  .visual-frame.revealed { clip-path: inset(0 0 0 0); }
+  .visual-frame .ph { height: 100%; }
+
+  /* Reduzierte Bewegung: alles sofort im Endzustand, kein Preloader */
+  @media (prefers-reduced-motion: reduce) {
+    .preloader { display: none; }
+    .mask > span, .fade { transition: none; transform: none; opacity: 1; }
+    .hero-right .inner, .hero-thumb .inner, .visual-frame { clip-path: none; transition: none; }
+  }
+
+  @media (max-width: 860px) {
+    header { flex-wrap: wrap; gap: 14px; }
+    nav { order: 3; width: 100%; justify-content: space-between; gap: 12px; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { min-height: 56svh; order: -1; }
+    .hero-title { white-space: normal; font-size: clamp(44px, 11vw, 72px); }
+    .hero-row { flex-wrap: wrap; }
+    .hero-thumb { width: 60%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 1) BUILD-UP -->
+<div class="preloader" id="preloader" aria-hidden="true">
+  <div class="pre-meta micro">
+    <span>Ein schönes Gefühl, zuhause anzukommen.</span>
+    <span>1050 Wien</span>
+  </div>
+  <div class="pre-mark">
+    <div class="das">Das</div>
+    <div class="wimmer">Wimmer</div>
+    <div class="pre-progress"><i id="progress"></i></div>
+  </div>
+  <div class="pre-counter"><span id="counter">0</span>%</div>
+</div>
+
+<header>
+  <a class="brand" href="#">
+    <!-- Platzhalter-Emblem: durch echtes Logo-SVG ersetzen -->
+    <svg viewBox="0 0 100 140" fill="none" aria-hidden="true">
+      <ellipse cx="50" cy="70" rx="46" ry="64" stroke="#1B1712" stroke-width="1"/>
+      <ellipse cx="50" cy="70" rx="39" ry="57" stroke="#1B1712" stroke-width="1"/>
+      <text x="50" y="66" text-anchor="middle" font-family="Cormorant, serif" font-size="44" fill="#1B1712">W</text>
+      <text x="50" y="102" text-anchor="middle" font-family="Cormorant, serif" font-size="26" fill="#C08A2D">20</text>
+    </svg>
+    <span class="brand-name">Das Wimmer</span>
+  </a>
+  <nav>
+    <a href="#">Wohnungen</a>
+    <a href="#">Lage</a>
+    <a href="#">Das Projekt</a>
+    <a href="#">Kontakt</a>
+  </nav>
+  <a class="cta" href="#">Anfragen</a>
+</header>
+
+<!-- 2) HERO: Headline links, Bild rechts volle Hoehe, kleines Bild links unter der Headline -->
+<section class="hero" id="hero">
+  <div class="hero-left">
+    <h1 class="hero-title mask"><span>Das Wimmer</span></h1>
+    <p class="hero-sub fade">
+      31 Wohnungen in einem Gründerzeit-Eckhaus von 1880.
+      Saniert, weitergebaut, mitten in Margareten.
+    </p>
+
+    <div class="hero-row">
+      <figure class="hero-thumb">
+        <div class="inner">
+          <!-- Echtes Bild einsetzen: <img src="fassade-ecke.jpg" alt="Das Wimmer, Fassade Wimmergasse 20"> -->
+          <div class="ph"><span>Bild: Fassadenrendering</span></div>
+        </div>
+      </figure>
+      <div class="hero-stat fade">
+        <div class="num-row">
+          <span class="num">31</span>
+          <span class="lbl">Wohnungen im Verkauf</span>
+        </div>
+        <span class="tag micro">Errichtet 1880, weitergebaut 2026</span>
+        <a class="btn" href="#">Mehr erfahren <span class="arrow">&#8594;</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="inner">
+      <!-- Echtes Bild einsetzen, Hochformat: <img src="interieur-hoch.jpg" alt="Interieur Das Wimmer"> -->
+      <div class="ph"><span>Bild: Interieur / Fassade, Hochformat, volle Höhe</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3) Scroll-Fortsetzung: Mikro-Label + Intro-Absatz, dann Full-width-Bild -->
+<section class="intro">
+  <span class="micro">Das Haus</span>
+  <p>
+    Das Wimmer ist ein Gründerzeit-Eckhaus von 1880 an der Wimmergasse 20 in Margareten:
+    Substanz, die aufgearbeitet wird, und ein Dachgeschoss, das Wien weiterbaut.
+  </p>
+</section>
+<section class="visual">
+  <div class="visual-frame" id="visual">
+    <!-- Echtes Key Visual einsetzen: <img src="fassade-abend.jpg" alt="Das Wimmer bei Abendlicht"> -->
+    <div class="ph"><span>Key Visual: Fassadenrendering Straßenecke, Full-width</span></div>
+  </div>
+</section>
+
+<script>
+  // 1) Build-up: Zaehler 0 bis 100 %, Fortschritts-Hairline synchron, dann Curtain nach oben
+  const preloader = document.getElementById("preloader");
+  const counterEl = document.getElementById("counter");
+  const progressEl = document.getElementById("progress");
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function easeOutExpo(t) { return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); }
+
+  function runBuildUp(duration, onDone) {
+    const start = performance.now();
+    function frame(now) {
+      const t = Math.min((now - start) / duration, 1);
+      const v = easeOutExpo(t);
+      counterEl.textContent = Math.round(v * 100);
+      progressEl.style.transform = "scaleX(" + v + ")";
+      if (t < 1) { requestAnimationFrame(frame); } else { onDone(); }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function revealHero() {
+    preloader.classList.add("done");
+    // Hero-Elemente staggern, sobald der Curtain hochfaehrt
+    setTimeout(() => document.body.classList.add("is-in"), 250);
+    setTimeout(() => preloader.remove(), 1400);
+  }
+
+  window.addEventListener("load", () => {
+    if (reduced) { document.body.classList.add("is-in"); return; }
+    runBuildUp(2400, revealHero);
+  });
+
+  // 3) Full-width Visual: Clip-Reveal beim Eintritt in den Viewport.
+  // Wichtig: Die umgebende Section beobachten, nicht den geclippten Frame selbst,
+  // denn ein per clip-path komplett geclipptes Element meldet Intersection-Ratio 0.
+  const visual = document.getElementById("visual");
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) { visual.classList.add("revealed"); io.disconnect(); }
+    });
+  }, { threshold: 0.2 });
+  io.observe(visual.parentElement);
+</script>
+
+</body>
+</html>
