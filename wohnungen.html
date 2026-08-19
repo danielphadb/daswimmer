@@ -258,9 +258,9 @@ html:not(.wimmer-js) [data-rv],html:not(.wimmer-js) [data-rvimg]{animation:rvFal
           </div>
         <div style="margin-bottom:30px;">
           <p style="margin:0 0 14px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#5F6A7D;">Wohnfläche ab {{ minNflLabel }}</p>
-          <input type="range" min="23" max="102" step="1" value="{{ minNfl }}" onInput="{{ setMinNfl }}" class="wf-range" style="width:100%;">
+          <input type="range" min="23" max="100" step="1" value="{{ minNfl }}" onInput="{{ setMinNfl }}" class="wf-range" style="width:100%;">
           <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:11px;color:#5F6A7D;">
-            <span>23 m²</span><span>102 m²</span>
+            <span>23 m²</span><span>100 m²</span>
           </div>
         </div>
         <div style="margin-bottom:30px;">
@@ -341,7 +341,7 @@ html:not(.wimmer-js) [data-rv],html:not(.wimmer-js) [data-rvimg]{animation:rvFal
           </div>
         </sc-if>
 
-        <p style="margin:24px 2px 0;font-size:11px;line-height:1.8;letter-spacing:0.04em;color:#5F6A7D;">Top 1, 9, 11 und 15 wurden zusammengelegt und entfallen. "Vermietet" bezeichnet Einheiten mit aufrechtem Bestandsmietvertrag. Zimmeranzahlen folgen mit Freigabe der Verkaufspläne.</p>
+        <p style="margin:24px 2px 0;font-size:11px;line-height:1.8;letter-spacing:0.04em;color:#5F6A7D;">Dachgeschoss-Wohnungen auf Anfrage. Top 1, 9, 11 und 15 wurden zusammengelegt und entfallen. "Vermietet" bezeichnet Einheiten mit aufrechtem Bestandsmietvertrag. Zimmeranzahlen folgen mit Freigabe der Verkaufspläne.</p>
       </div>
     </div>
   </section>
@@ -474,7 +474,7 @@ class Component extends DCLogic {
     const badge = (s) => s === 'verfügbar' ? { badgeBg: '#13233F', badgeFg: '#F3ECDE', badgeBd: '#13233F' }
       : s === 'in Vorbereitung' ? { badgeBg: '#EB9E0C', badgeFg: '#13233F', badgeBd: '#EB9E0C' }
       : { badgeBg: 'transparent', badgeFg: '#5F6A7D', badgeBd: 'rgba(19,35,63,0.3)' };
-    const all = Component.UNITS.concat((this.props.lokalZeile ?? true)
+    const all = Component.UNITS.filter((u) => u.grp !== 'Dachgeschoss').concat((this.props.lokalZeile ?? true)
       ? [{ top: 3, ebene: 'EG + KG', grp: 'EG', nfl: '180,61', frei: '', status: 'vermietet', typ: 'Geschäftslokal' }] : []);
     let list = all.filter((u) => {
       if ((st.ebene ?? 'Alle') !== 'Alle' && u.grp !== st.ebene) return false;
@@ -502,7 +502,7 @@ class Component extends DCLogic {
     });
     const selUnit = st.selected == null ? null : all.find((u) => u.top === st.selected);
     return {
-      ebeneChips: chips(['Alle', 'EG', '1. OG', '2. OG', '3. OG', 'Dachgeschoss'], 'ebene'),
+      ebeneChips: chips(['Alle', 'EG', '1. OG', '2. OG', '3. OG'], 'ebene'),
       freiChips: chips(['Alle', 'mit Freifläche', 'ohne'], 'frei'),
       statusChips: chips(['Alle', 'verfügbar', 'vermietet', 'in Vorbereitung'], 'status'),
       minNfl: minNfl,
