@@ -83,6 +83,7 @@ html:not(.wimmer-js) [data-rv],html:not(.wimmer-js) [data-rvimg]{animation:rvFal
       <a href="/wohnungen" style="font-family:'Pluto','Outfit',sans-serif;font-size:11px;letter-spacing:0.2em;color:#13233F;padding-bottom:4px;background-image:linear-gradient(#EB9E0C,#EB9E0C);background-repeat:no-repeat;background-position:0 100%;background-size:0% 1px;transition:background-size .5s cubic-bezier(.25,1,.25,1);" style-hover="background-size:100% 1px;color:#13233F;">WOHNUNGEN</a>
       <a href="/lage" style="font-family:'Pluto','Outfit',sans-serif;font-size:11px;letter-spacing:0.2em;color:#13233F;padding-bottom:4px;background-image:linear-gradient(#EB9E0C,#EB9E0C);background-repeat:no-repeat;background-position:0 100%;background-size:0% 1px;transition:background-size .5s cubic-bezier(.25,1,.25,1);" style-hover="background-size:100% 1px;color:#13233F;">LAGE</a>
       <a href="/das-projekt" style="font-family:'Pluto','Outfit',sans-serif;font-size:11px;letter-spacing:0.2em;color:#13233F;padding-bottom:4px;border-bottom:1px solid #13233F;">DAS PROJEKT</a>
+      <a href="/bautraeger" style="font-family:'Pluto','Outfit',sans-serif;font-size:11px;letter-spacing:0.2em;color:#13233F;padding-bottom:4px;border-bottom:1px solid #13233F;">BAUTRÄGER</a>
       <a href="/#kontakt" style="font-family:'Pluto','Outfit',sans-serif;font-size:11px;letter-spacing:0.2em;color:#13233F;padding-bottom:4px;background-image:linear-gradient(#EB9E0C,#EB9E0C);background-repeat:no-repeat;background-position:0 100%;background-size:0% 1px;transition:background-size .5s cubic-bezier(.25,1,.25,1);" style-hover="background-size:100% 1px;color:#13233F;">KONTAKT</a>
     </nav>
     <a href="/wohnungen#finder" style="font-family:'Outfit',sans-serif;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#13233F;border-bottom:1px solid rgba(19,35,63,0.4);padding-bottom:3px;transition:border-color .45s cubic-bezier(.25,1,.25,1),color .45s cubic-bezier(.25,1,.25,1);" style-hover="border-bottom-color:#EB9E0C;color:#EB9E0C;">Anfragen</a>
@@ -172,12 +173,16 @@ html:not(.wimmer-js) [data-rv],html:not(.wimmer-js) [data-rvimg]{animation:rvFal
   </section>
 
   <section style="max-width:1360px;margin:0 auto;padding:0 48px 130px;">
-    <div data-rvimg="1" style="background:#FAF5EA;border:1px solid rgba(19,35,63,0.16);padding:clamp(24px,4vw,64px);">
-      <img src="/assets/fassade-strassenansicht.webp" width="1600" height="1534" loading="lazy" decoding="async" alt="Straßenansicht Wimmergasse 20: gezeichnete Fassadenansicht mit saniertem Altbau und neuem Dachgeschoss (Büro Buschina, Stand 03/2026)" style="display:block;width:100%;height:auto;">
-    </div>
-    <div style="display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-top:12px;">
-      <p style="margin:0;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#5F6A7D;">Straßenansicht Wimmergasse · Planung Büro Buschina, Stand 03/2026</p>
-      <p style="margin:0;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#5F6A7D;">Fassadengliederung mit Kordongesimsen, Pilastern und Verdachungen</p>
+    <div style="display:grid;grid-template-columns:1fr 1.15fr;gap:80px;align-items:center;">
+      <div data-rv="1" style="position:relative;padding:28px 0 0 28px;max-width:440px;">
+        <span style="position:absolute;top:0;left:0;width:22px;height:22px;border-top:1px solid rgba(19,35,63,0.4);border-left:1px solid rgba(19,35,63,0.4);"></span>
+        <h3 style="margin:0 0 16px;font-family:'Pluto','Outfit',sans-serif;font-weight:200;font-size:34px;line-height:1.15;color:#13233F;">Die Fassade, gezeichnet</h3>
+        <p style="margin:0 0 18px;font-size:15px;line-height:1.7;color:#5F6A7D;text-wrap:pretty;">Die Straßenansicht des Büros Buschina zeigt den Bestand mit dem neuen Dachgeschoss. Die Fassadengliederung wird mit Kordongesimsen, Pilastern und Verdachungen nach historischem Vorbild ausgeführt, die Fenster außen in RAL 9010 Pure White.</p>
+        <p style="margin:0;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#5F6A7D;">Planung Büro Buschina · Stand 03/2026</p>
+      </div>
+      <div data-rvimg="1" style="background:#FAF5EA;border:1px solid rgba(19,35,63,0.16);padding:clamp(20px,3vw,44px);">
+        <img src="/assets/fassade-strassenansicht.webp" width="1600" height="1534" loading="lazy" decoding="async" alt="Straßenansicht Wimmergasse 20: gezeichnete Fassadenansicht mit saniertem Altbau und neuem Dachgeschoss (Büro Buschina, Stand 03/2026)" style="display:block;width:100%;height:auto;">
+      </div>
     </div>
   </section>
 
@@ -293,7 +298,7 @@ html:not(.wimmer-js) [data-rv],html:not(.wimmer-js) [data-rvimg]{animation:rvFal
           <span style="width:36px;height:1px;background:rgba(19,35,63,0.3);align-self:center;"></span>
           <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#13233F;">Team</span>
         </div>
-        <p style="margin:0 0 44px;font-size:15px;line-height:1.7;color:#5F6A7D;max-width:640px;text-wrap:pretty;">Hinter dem Wimmer steht die W20-Development GmbH, ein Unternehmen der Venture Property Holding (VPH). Das Team um Markus Hudecek entwickelt und saniert seit über 30 Jahren [prüfen] Wiener Wohnhäuser - mit Fokus auf Bestand, der bleibt.</p>
+        <p style="margin:0 0 44px;font-size:15px;line-height:1.7;color:#5F6A7D;max-width:640px;text-wrap:pretty;">Hinter dem Wimmer steht die W20-Development GmbH, ein Unternehmen der Venture Property Holding (VPH). Das Team um Markus Hudecek entwickelt und saniert seit über 30 Jahren [prüfen] Wiener Wohnhäuser - mit Fokus auf Bestand, der bleibt. <a href="/bautraeger" style="color:#13233F;border-bottom:1px solid #EB9E0C;padding-bottom:2px;">Mehr zum Bauträger</a></p>
         <div style="display:flex;justify-content:space-between;gap:24px;padding:18px 2px;border-top:1px solid rgba(19,35,63,0.16);"><span style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5F6A7D;">Bauträger</span><span style="font-family:'Pluto','Outfit',sans-serif;font-weight:300;font-size:22px;color:#13233F;">W20-Development GmbH (VPH)</span></div>
         <div style="display:flex;justify-content:space-between;gap:24px;padding:18px 2px;border-top:1px solid rgba(19,35,63,0.16);"><span style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5F6A7D;">Architektur</span><span style="font-family:'Pluto','Outfit',sans-serif;font-weight:300;font-size:22px;color:#13233F;">Büro Buschina</span></div>
         <div style="display:flex;justify-content:space-between;gap:24px;padding:18px 2px;border-top:1px solid rgba(19,35,63,0.16);"><span style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5F6A7D;">Licht</span><span style="font-family:'Pluto','Outfit',sans-serif;font-weight:300;font-size:22px;color:#13233F;">Belighted</span></div>
@@ -319,6 +324,7 @@ html:not(.wimmer-js) [data-rv],html:not(.wimmer-js) [data-rvimg]{animation:rvFal
           <a href="/wohnungen" style="font-family:'Pluto','Outfit',sans-serif;font-size:11px;letter-spacing:0.2em;color:#F3ECDE;background-image:linear-gradient(#EB9E0C,#EB9E0C);background-repeat:no-repeat;background-position:0 100%;background-size:0% 1px;transition:background-size .5s cubic-bezier(.25,1,.25,1);" style-hover="background-size:100% 1px;color:#F3ECDE;">WOHNUNGEN</a>
           <a href="/lage" style="font-family:'Pluto','Outfit',sans-serif;font-size:11px;letter-spacing:0.2em;color:#F3ECDE;background-image:linear-gradient(#EB9E0C,#EB9E0C);background-repeat:no-repeat;background-position:0 100%;background-size:0% 1px;transition:background-size .5s cubic-bezier(.25,1,.25,1);" style-hover="background-size:100% 1px;color:#F3ECDE;">LAGE</a>
           <a href="/das-projekt" style="font-family:'Pluto','Outfit',sans-serif;font-size:11px;letter-spacing:0.2em;color:#F3ECDE;background-image:linear-gradient(#EB9E0C,#EB9E0C);background-repeat:no-repeat;background-position:0 100%;background-size:0% 1px;transition:background-size .5s cubic-bezier(.25,1,.25,1);" style-hover="background-size:100% 1px;color:#F3ECDE;">DAS PROJEKT</a>
+        <a href="/bautraeger" style="font-family:'Pluto','Outfit',sans-serif;font-size:11px;letter-spacing:0.2em;color:#F3ECDE;background-image:linear-gradient(#EB9E0C,#EB9E0C);background-repeat:no-repeat;background-position:0 100%;background-size:0% 1px;transition:background-size .5s cubic-bezier(.25,1,.25,1);" style-hover="background-size:100% 1px;color:#F3ECDE;">BAUTRÄGER</a>
         </nav>
       </div>
       <div style="margin:70px 0 50px;text-align:center;overflow:hidden;">
