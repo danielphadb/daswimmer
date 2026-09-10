@@ -116,13 +116,11 @@ a:hover{color:#EB9E0C;}
     </div>
     <h2 style="margin:0 0 44px;font-family:'Pluto','Outfit',sans-serif;font-weight:200;font-size:clamp(32px,3.6vw,52px);line-height:1.12;color:#13233F;max-width:860px;text-wrap:pretty;">Zum Durchblättern und Mitnehmen.</h2>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;"><div style="border:1px solid rgba(19,35,63,0.16);background:#FAF5EA;display:flex;flex-direction:column;">
-        <div style="aspect-ratio:4/3;background:#E9E1D0;display:flex;align-items:center;justify-content:center;">
-          <span style="font-family:'Pluto','Outfit',sans-serif;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5F6A7D;">Motiv folgt</span>
-        </div>
+        <div style="aspect-ratio:4/3;background:#E9E1D0;overflow:hidden;display:flex;align-items:flex-start;justify-content:center;padding:22px 22px 0;"><img src="/assets/katalog/seite-01.webp" width="1400" height="1981" loading="lazy" decoding="async" alt="Produktkatalog Das Wimmer, Titelseite" style="display:block;width:78%;height:auto;border:1px solid rgba(19,35,63,0.16);"></div>
         <div style="padding:26px 26px 30px;display:flex;flex-direction:column;flex:1;">
           <h3 style="margin:0 0 12px;font-family:'Pluto','Outfit',sans-serif;font-weight:300;font-size:24px;line-height:1.25;color:#13233F;">Produktbeschreibung</h3>
           <p style="margin:0 0 22px;font-size:14px;line-height:1.65;color:#5F6A7D;text-wrap:pretty;flex:1;">Ausstattungs- und Produktkatalog der Allgemeinbereiche: das Farb- und Materialkonzept sowie alle dokumentierten Positionen, von der Gegensprechanlage bis zur Bestandseingangstüre.</p>
-          <span style="align-self:flex-start;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#5F6A7D;border:1px solid rgba(19,35,63,0.25);padding:10px 16px;">Broschüre in Vorbereitung</span>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;"><a href="#produktkatalog" style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#F3ECDE;background:#13233F;padding:11px 16px;">Durchblättern</a><a href="/assets/das-wimmer-produktkatalog.pdf" download="Das-Wimmer-Produktkatalog.pdf" style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#13233F;border:1px solid rgba(19,35,63,0.25);padding:10px 16px;">PDF herunterladen</a></div>
         </div>
       </div><div style="border:1px solid rgba(19,35,63,0.16);background:#FAF5EA;display:flex;flex-direction:column;">
         <div style="aspect-ratio:4/3;background:#E9E1D0;display:flex;align-items:center;justify-content:center;">
@@ -145,6 +143,30 @@ a:hover{color:#EB9E0C;}
       </div></div>
   </section>
 
+  <section id="produktkatalog" style="max-width:1360px;margin:0 auto;padding:0 48px 130px;">
+    <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:24px;">
+      <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#5F6A7D;">04</span>
+      <span style="width:36px;height:1px;background:rgba(19,35,63,0.3);align-self:center;"></span>
+      <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#13233F;">Produktkatalog</span>
+    </div>
+    <h2 style="margin:0 0 44px;font-family:'Pluto','Outfit',sans-serif;font-weight:200;font-size:clamp(32px,3.6vw,52px);line-height:1.12;color:#13233F;max-width:860px;">Ausstattungs- und Produktkatalog.</h2>
+    <div style="border:1px solid rgba(19,35,63,0.16);background:#FAF5EA;padding:clamp(20px,3vw,40px);">
+      <div style="display:grid;grid-template-columns:48px minmax(0,1fr) 48px;gap:20px;align-items:center;">
+        <button onClick="{{ katPrev }}" aria-label="Zurück" style="background:none;border:1px solid rgba(19,35,63,0.25);cursor:pointer;width:48px;height:48px;font-family:'Outfit',sans-serif;font-size:16px;color:#13233F;transition:border-color .4s,color .4s;" style-hover="border-color:#EB9E0C;color:#EB9E0C;">←</button>
+        <div style="max-width:620px;margin:0 auto;width:100%;"><img src="{{ katSrc }}" alt="{{ katAlt }}" width="1400" height="1981" decoding="async" style="display:block;width:100%;height:auto;border:1px solid rgba(19,35,63,0.16);background:#fff;"></div>
+        <button onClick="{{ katNext }}" aria-label="Weiter" style="background:none;border:1px solid rgba(19,35,63,0.25);cursor:pointer;width:48px;height:48px;font-family:'Outfit',sans-serif;font-size:16px;color:#13233F;transition:border-color .4s,color .4s;" style-hover="border-color:#EB9E0C;color:#EB9E0C;">→</button>
+      </div>
+      <div style="display:flex;justify-content:center;align-items:center;gap:14px;margin-top:24px;">
+        <sc-for list="{{ katDots }}" as="d" hint-placeholder-count="7"><button onClick="{{ d.go }}" aria-label="{{ d.label }}" style="background:{{ d.bg }};border:1px solid {{ d.bd }};width:8px;height:8px;padding:0;cursor:pointer;border-radius:0;transition:background .4s,border-color .4s;" style-hover="border-color:#EB9E0C;"></button></sc-for>
+        <span style="font-family:'Pluto','Outfit',sans-serif;font-size:15px;color:#5F6A7D;margin-left:8px;">{{ katLabel }}</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:24px;">
+        <p style="margin:0;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#5F6A7D;">Stand 22.07.2026 · Maßgeblich sind Bemusterung und Ausführungsplanung</p>
+        <a href="/assets/das-wimmer-produktkatalog.pdf" download="Das-Wimmer-Produktkatalog.pdf" style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#13233F;border-bottom:1px solid #EB9E0C;padding-bottom:3px;">PDF herunterladen ↓</a>
+      </div>
+    </div>
+  </section>
+
   <footer style="background:#0F1C33;color:#F3ECDE;padding:50px 48px 32px;">
     <div style="max-width:1360px;margin:0 auto;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;">
       <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;"><a href="/bautraeger" aria-label="Venture Property Holding" style="display:inline-flex;background:#F3ECDE;padding:8px 12px;"><img src="/assets/logo-vph.webp" width="532" height="199" alt="VPH Venture Property Holding" style="display:block;height:30px;width:auto;"></a><p style="margin:0;font-size:11px;letter-spacing:0.1em;color:rgba(243,236,222,0.5);">© 2026 · Ein Projekt der Venture Property Holding GmbH · Renderings sind Symbolbilder, Änderungen vorbehalten</p></div>
@@ -153,5 +175,23 @@ a:hover{color:#EB9E0C;}
   </footer>
 </div>
 </x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;smoothScroll&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Verhalten&quot;}}">
+class Component extends DCLogic {
+  state = { katPage: 0 };
+  renderVals() {
+    const p = this.state.katPage || 0;
+    return {
+      katSrc: '/assets/katalog/seite-' + String(p + 1).padStart(2, '0') + '.webp',
+      katAlt: 'Produktkatalog Das Wimmer, Seite ' + (p + 1) + ' von 7',
+      katLabel: 'Seite ' + (p + 1) + ' / 7',
+      katPrev: () => this.setState((st) => ({ katPage: ((st.katPage || 0) + 6) % 7 })),
+      katNext: () => this.setState((st) => ({ katPage: ((st.katPage || 0) + 1) % 7 })),
+      katDots: [0,1,2,3,4,5,6].map((i) => ({ label: 'Seite ' + (i + 1), go: () => this.setState({ katPage: i }),
+        bg: i === p ? '#13233F' : 'transparent', bd: i === p ? '#13233F' : 'rgba(19,35,63,0.4)' }))
+    };
+  }
+  componentDidMount() { try { document.documentElement.classList.add('wimmer-js'); } catch (e) {} }
+}
+</script>
 </body>
 </html>
