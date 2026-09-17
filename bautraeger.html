@@ -58,7 +58,7 @@ a:hover{color:#EB9E0C;}
     <a href="/wohnungen#finder" style="font-family:'Outfit',sans-serif;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#13233F;border-bottom:1px solid rgba(19,35,63,0.4);padding-bottom:3px;transition:border-color .45s cubic-bezier(.25,1,.25,1),color .45s cubic-bezier(.25,1,.25,1);" style-hover="border-bottom-color:#EB9E0C;color:#EB9E0C;">Anfragen</a>
   </header>
   <section style="max-width:1360px;margin:0 auto;padding:90px 48px 70px;">
-    <div data-rule="1" style="margin-bottom:40px;"><span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#5F6A7D;">01</span><span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#13233F;text-align:right;">Bauträger</span></div>
+    <div data-rule="1" style="border-bottom:none;padding-bottom:0;margin-bottom:40px;"><span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#5F6A7D;">01</span><span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#13233F;text-align:right;">Bauträger</span></div>
     <h1 style="margin:0 0 60px;font-family:'Pluto','Outfit',sans-serif;font-weight:200;font-size:clamp(44px,6.2vw,86px);line-height:1.05;color:#13233F;max-width:960px;text-wrap:pretty;">Eine gemeinsame <em style="font-style:normal;color:inherit;">Vision.</em></h1>
     <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:start;">
       <p style="margin:0;font-size:17px;line-height:1.75;color:#13233F;max-width:560px;text-wrap:pretty;">Hinter „Das Wimmer" steht die W20-Development GmbH, ein Unternehmen der Venture Property Holding (VPH). Die Unternehmensgruppe entwickelt und bewirtschaftet seit 1993 Wohn- und Gewerbeimmobilien. Markus Hudecek und sein Team verbinden dabei langjährige Erfahrung mit einem besonderen Gespür für bestehende Bausubstanz. Gemeinsam mit ausgewählten Partnern wird die Wimmergasse 20 mit Respekt vor ihrer Geschichte weiterentwickelt, historische Qualitäten werden bewahrt, zeitgemäße Standards ergänzt und neuer Wohnraum geschaffen.</p>
@@ -156,7 +156,7 @@ a:hover{color:#EB9E0C;}
         </div>
         <a href="/assets/das-wimmer-produktkatalog.pdf" download="Das-Wimmer-Produktkatalog.pdf" class="wm-link" style="margin-top:32px;">PDF herunterladen <span aria-hidden="true">↓</span></a>
       </div>
-      <div class="kat-book"><img data-kat-img="1" src="{{ katSrc }}" alt="{{ katAlt }}" width="1400" height="1981" decoding="async" style="display:block;width:100%;height:auto;background:#fff;box-shadow:0 40px 80px -44px rgba(19,35,63,0.5),0 0 0 1px rgba(19,35,63,0.08);transform-origin:left center;"></div>
+      <div class="kat-book" onPointerDown="{{ katDown }}" style="touch-action:pan-y;cursor:grab;user-select:none;"><img data-kat-img="1" draggable="false" src="{{ katSrc }}" alt="{{ katAlt }}" width="1400" height="1981" decoding="async" style="display:block;width:100%;height:auto;background:#fff;box-shadow:0 40px 80px -44px rgba(19,35,63,0.5),0 0 0 1px rgba(19,35,63,0.08);transform-origin:left center;"></div>
     </div>
   </section>
 
@@ -177,6 +177,18 @@ class Component extends DCLogic {
       katSrc: '/assets/katalog/seite-' + String(p + 1).padStart(2, '0') + '.webp',
       katAlt: 'Produktkatalog Das Wimmer, Seite ' + (p + 1) + ' von 7',
       katLabel: 'Seite ' + (p + 1) + ' / 7',
+      katDown: (e) => {
+        if (e.button != null && e.button !== 0) return;
+        const startX = e.clientX; const el = e.currentTarget;
+        if (el && el.setPointerCapture) { try { el.setPointerCapture(e.pointerId); } catch (err) {} }
+        const up = (ev) => {
+          window.removeEventListener('pointerup', up); window.removeEventListener('pointercancel', up);
+          const dx = ev.clientX - startX;
+          if (dx < -40) { this.katFlip(); this.setState((st) => ({ katPage: ((st.katPage || 0) + 1) % 7 })); }
+          else if (dx > 40) { this.katFlip(); this.setState((st) => ({ katPage: ((st.katPage || 0) + 6) % 7 })); }
+        };
+        window.addEventListener('pointerup', up); window.addEventListener('pointercancel', up);
+      },
       katPrev: () => { this.katFlip(); this.setState((st) => ({ katPage: ((st.katPage || 0) + 6) % 7 })); },
       katNext: () => { this.katFlip(); this.setState((st) => ({ katPage: ((st.katPage || 0) + 1) % 7 })); },
       katDots: [0,1,2,3,4,5,6].map((i) => ({ label: 'Seite ' + (i + 1), go: () => { this.katFlip(); this.setState({ katPage: i }); },
