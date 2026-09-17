@@ -111,6 +111,28 @@ html:not(.wimmer-js) [data-rv],html:not(.wimmer-js) [data-rvimg]{animation:rvFal
 @media (prefers-reduced-motion: reduce){[data-radius] .wm-cring{animation:none;}[data-radius] .wm-pin{opacity:1;transform:none;}}
 [data-gal-track] img{-webkit-user-drag:none;pointer-events:none;}
 [data-gal-track]{-webkit-user-select:none;}
+[data-acc-panel]{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s cubic-bezier(.25,1,.25,1);}
+[data-acc-item][data-open] [data-acc-panel]{grid-template-rows:1fr;}
+[data-acc-item][data-open] [data-acc-plus]{transform:rotate(45deg);background:#13233F;color:#FAF9F6;border-color:#13233F;}
+[data-acc-btn]:hover [data-acc-plus]{border-color:#EB9E0C;color:#EB9E0C;}
+[data-acc-item][data-open] [data-acc-btn]:hover [data-acc-plus]{color:#FAF9F6;border-color:#13233F;}
+[data-rvimg] img{transform:scale(1.06);transition:transform 1.6s cubic-bezier(.25,1,.25,1);}
+[data-rvimg][data-rv-state="in"] img{transform:scale(1);}
+.wm-w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.08em;margin-bottom:-.08em;}
+[data-words] .wm-w > span{display:inline-block;transform:translateY(112%);transition:transform .95s cubic-bezier(.25,1,.25,1);}
+[data-words][data-words-in] .wm-w > span{transform:none;}
+[data-rule]{position:relative;border-bottom-color:transparent !important;}
+[data-rule]:not([style*="border-bottom:none"])::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:rgba(19,35,63,0.16);transform:scaleX(0);transform-origin:left;transition:transform 1.3s cubic-bezier(.25,1,.25,1) .1s;}
+[data-rule][data-rv-state="in"]::after{transform:scaleX(1);}
+@media (prefers-reduced-motion: reduce){[data-rvimg] img{transform:none;transition:none;}[data-rule]::after{transform:none;}[data-words] .wm-w > span{transform:none;transition:none;}}
+.wm-band{display:block;overflow:hidden;background:#0F1C33;color:#FAF9F6;padding:clamp(26px,3vw,44px) 0;white-space:nowrap;}
+.wm-band:hover{color:#FAF9F6;}
+.wm-band-track{display:inline-flex;will-change:transform;animation:wmBand 46s linear infinite;}
+.wm-band-item{display:inline-flex;align-items:center;gap:clamp(26px,3vw,48px);padding-right:clamp(26px,3vw,48px);font-family:'Pluto','Outfit',sans-serif;font-weight:200;font-size:clamp(30px,4.4vw,68px);letter-spacing:0.05em;line-height:1;text-transform:uppercase;}
+.wm-band-item i{display:inline-block;width:.16em;height:.16em;background:#EB9E0C;transform:rotate(45deg);flex:none;}
+.wm-band-item .wm-arr{display:inline-block;transition:transform .5s cubic-bezier(.25,1,.25,1);}
+.wm-band:hover .wm-arr{transform:translateX(.15em);}
+@keyframes wmBand{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 </style>
 </helmet>
 <div style="background:#FAF9F6;color:#13233F;min-height:100vh;">
@@ -138,8 +160,7 @@ html:not(.wimmer-js) [data-rv],html:not(.wimmer-js) [data-rvimg]{animation:rvFal
       <div data-rv="1">
         <h2 style="margin:0 0 44px;font-family:'Pluto','Outfit',sans-serif;font-weight:300;font-size:clamp(28px,2.8vw,38px);line-height:1.2;color:#13233F;">Urban verbunden.</h2>
         <div data-radius-rows="1">
-        <div data-hover-label="Buslinien 12A & 59A" data-pin="bus" style="display:flex;justify-content:space-between;align-items:baseline;padding:22px 4px;border-top:1px solid rgba(19,35,63,0.16);cursor:default;transition:transform .5s cubic-bezier(.25,1,.25,1);" style-hover="transform:translateY(-2px);"><span style="font-family:'Pluto','Outfit',sans-serif;font-weight:300;font-size:30px;color:#13233F;">3 Min</span><span style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5F6A7D;">Buslinien 12A & 59A</span></div><div data-hover-label="U4-Station Pilgramgasse" data-pin="u4" style="display:flex;justify-content:space-between;align-items:baseline;padding:22px 4px;border-top:1px solid rgba(19,35,63,0.16);cursor:default;transition:transform .5s cubic-bezier(.25,1,.25,1);" style-hover="transform:translateY(-2px);"><span style="font-family:'Pluto','Outfit',sans-serif;font-weight:300;font-size:30px;color:#13233F;">10 Min</span><span style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5F6A7D;">U4-Station Pilgramgasse</span></div><div data-hover-label="Margaretenplatz" data-pin="mgp" style="display:flex;justify-content:space-between;align-items:baseline;padding:22px 4px;border-top:1px solid rgba(19,35,63,0.16);cursor:default;transition:transform .5s cubic-bezier(.25,1,.25,1);" style-hover="transform:translateY(-2px);"><span style="font-family:'Pluto','Outfit',sans-serif;font-weight:300;font-size:30px;color:#13233F;">10 Min</span><span style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5F6A7D;">Margaretenplatz</span></div><div data-hover-label="Naschmarkt" data-pin="nm" style="display:flex;justify-content:space-between;align-items:baseline;padding:22px 4px;border-top:1px solid rgba(19,35,63,0.16);cursor:default;transition:transform .5s cubic-bezier(.25,1,.25,1);" style-hover="transform:translateY(-2px);"><span style="font-family:'Pluto','Outfit',sans-serif;font-weight:300;font-size:30px;color:#13233F;">10 Min</span><span style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5F6A7D;">Naschmarkt</span></div><div data-hover-label="Hauptbahnhof" data-pin="hbf" style="display:flex;justify-content:space-between;align-items:baseline;padding:22px 4px;border-top:1px solid rgba(19,35,63,0.16);cursor:default;transition:transform .5s cubic-bezier(.25,1,.25,1);" style-hover="transform:translateY(-2px);"><span style="font-family:'Pluto','Outfit',sans-serif;font-weight:300;font-size:30px;color:#13233F;">6 Min</span><span style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5F6A7D;">Hauptbahnhof</span></div><div data-hover-label="Mariahilfer Straße" data-pin="mahue" style="display:flex;justify-content:space-between;align-items:baseline;padding:22px 4px;border-top:1px solid rgba(19,35,63,0.16);border-bottom:1px solid rgba(19,35,63,0.16);cursor:default;transition:transform .5s cubic-bezier(.25,1,.25,1);" style-hover="transform:translateY(-2px);"><span style="font-family:'Pluto','Outfit',sans-serif;font-weight:300;font-size:30px;color:#13233F;">10 Min</span><span style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5F6A7D;">Mariahilfer Straße</span></div><p style="margin:16px 0 0;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#5F6A7D;">Minuten laut Angabe des Bauträgers</p>
-        </div>
+        <div data-hover-label="Buslinien 12A & 59A" data-pin="bus" style="display:flex;justify-content:space-between;align-items:baseline;padding:22px 4px;border-top:1px solid rgba(19,35,63,0.16);cursor:default;transition:transform .5s cubic-bezier(.25,1,.25,1);" style-hover="transform:translateY(-2px);"><span style="font-family:'Pluto','Outfit',sans-serif;font-weight:300;font-size:30px;color:#13233F;">3 Min</span><span style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5F6A7D;">Buslinien 12A & 59A</span></div><div data-hover-label="U4-Station Pilgramgasse" data-pin="u4" style="display:flex;justify-content:space-between;align-items:baseline;padding:22px 4px;border-top:1px solid rgba(19,35,63,0.16);cursor:default;transition:transform .5s cubic-bezier(.25,1,.25,1);" style-hover="transform:translateY(-2px);"><span style="font-family:'Pluto','Outfit',sans-serif;font-weight:300;font-size:30px;color:#13233F;">10 Min</span><span style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5F6A7D;">U4-Station Pilgramgasse</span></div><div data-hover-label="Margaretenplatz" data-pin="mgp" style="display:flex;justify-content:space-between;align-items:baseline;padding:22px 4px;border-top:1px solid rgba(19,35,63,0.16);cursor:default;transition:transform .5s cubic-bezier(.25,1,.25,1);" style-hover="transform:translateY(-2px);"><span style="font-family:'Pluto','Outfit',sans-serif;font-weight:300;font-size:30px;color:#13233F;">10 Min</span><span style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5F6A7D;">Margaretenplatz</span></div><div data-hover-label="Naschmarkt" data-pin="nm" style="display:flex;justify-content:space-between;align-items:baseline;padding:22px 4px;border-top:1px solid rgba(19,35,63,0.16);cursor:default;transition:transform .5s cubic-bezier(.25,1,.25,1);" style-hover="transform:translateY(-2px);"><span style="font-family:'Pluto','Outfit',sans-serif;font-weight:300;font-size:30px;color:#13233F;">10 Min</span><span style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5F6A7D;">Naschmarkt</span></div><div data-hover-label="Hauptbahnhof" data-pin="hbf" style="display:flex;justify-content:space-between;align-items:baseline;padding:22px 4px;border-top:1px solid rgba(19,35,63,0.16);cursor:default;transition:transform .5s cubic-bezier(.25,1,.25,1);" style-hover="transform:translateY(-2px);"><span style="font-family:'Pluto','Outfit',sans-serif;font-weight:300;font-size:30px;color:#13233F;">6 Min</span><span style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5F6A7D;">Hauptbahnhof</span></div><div data-hover-label="Mariahilfer Straße" data-pin="mahue" style="display:flex;justify-content:space-between;align-items:baseline;padding:22px 4px;border-top:1px solid rgba(19,35,63,0.16);border-bottom:1px solid rgba(19,35,63,0.16);cursor:default;transition:transform .5s cubic-bezier(.25,1,.25,1);" style-hover="transform:translateY(-2px);"><span style="font-family:'Pluto','Outfit',sans-serif;font-weight:300;font-size:30px;color:#13233F;">10 Min</span><span style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5F6A7D;">Mariahilfer Straße</span></div>        </div>
       </div>
       <div data-rv="1" data-map-reveal="1" style="position:sticky;top:110px;border:1px solid rgba(19,35,63,0.16);background:#FFFFFF;padding:30px 30px 26px;"><img src="/assets/lageplan-wimmergasse.webp" width="1600" height="1564" loading="lazy" decoding="async" alt="Lageplan: Das Wimmer an der Wimmergasse 20 im 5. Bezirk, mit Ankerpunkten der Wiener Innenstadt" style="display:block;width:100%;height:auto;"><div style="margin:26px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:6px 32px;"><div style="display:flex;gap:10px;align-items:baseline;padding:4px 0;"><span style="font-family:'Pluto','Outfit',sans-serif;font-weight:400;font-size:11px;color:#EB9E0C;min-width:15px;text-align:right;">1</span><span style="font-size:12px;line-height:1.5;color:#5F6A7D;">Hauptbahnhof</span></div><div style="display:flex;gap:10px;align-items:baseline;padding:4px 0;"><span style="font-family:'Pluto','Outfit',sans-serif;font-weight:400;font-size:11px;color:#EB9E0C;min-width:15px;text-align:right;">2</span><span style="font-size:12px;line-height:1.5;color:#5F6A7D;">Schloss Belvedere</span></div><div style="display:flex;gap:10px;align-items:baseline;padding:4px 0;"><span style="font-family:'Pluto','Outfit',sans-serif;font-weight:400;font-size:11px;color:#EB9E0C;min-width:15px;text-align:right;">3</span><span style="font-size:12px;line-height:1.5;color:#5F6A7D;">Karlskirche</span></div><div style="display:flex;gap:10px;align-items:baseline;padding:4px 0;"><span style="font-family:'Pluto','Outfit',sans-serif;font-weight:400;font-size:11px;color:#EB9E0C;min-width:15px;text-align:right;">4</span><span style="font-size:12px;line-height:1.5;color:#5F6A7D;">Raimund Theater</span></div><div style="display:flex;gap:10px;align-items:baseline;padding:4px 0;"><span style="font-family:'Pluto','Outfit',sans-serif;font-weight:400;font-size:11px;color:#EB9E0C;min-width:15px;text-align:right;">5</span><span style="font-size:12px;line-height:1.5;color:#5F6A7D;">Haus des Meeres</span></div><div style="display:flex;gap:10px;align-items:baseline;padding:4px 0;"><span style="font-family:'Pluto','Outfit',sans-serif;font-weight:400;font-size:11px;color:#EB9E0C;min-width:15px;text-align:right;">6</span><span style="font-size:12px;line-height:1.5;color:#5F6A7D;">Kunsthistorisches Museum</span></div><div style="display:flex;gap:10px;align-items:baseline;padding:4px 0;"><span style="font-family:'Pluto','Outfit',sans-serif;font-weight:400;font-size:11px;color:#EB9E0C;min-width:15px;text-align:right;">7</span><span style="font-size:12px;line-height:1.5;color:#5F6A7D;">Hofburg</span></div><div style="display:flex;gap:10px;align-items:baseline;padding:4px 0;"><span style="font-family:'Pluto','Outfit',sans-serif;font-weight:400;font-size:11px;color:#EB9E0C;min-width:15px;text-align:right;">8</span><span style="font-size:12px;line-height:1.5;color:#5F6A7D;">Burggarten</span></div><div style="display:flex;gap:10px;align-items:baseline;padding:4px 0;"><span style="font-family:'Pluto','Outfit',sans-serif;font-weight:400;font-size:11px;color:#EB9E0C;min-width:15px;text-align:right;">9</span><span style="font-size:12px;line-height:1.5;color:#5F6A7D;">Staatsoper</span></div><div style="display:flex;gap:10px;align-items:baseline;padding:4px 0;"><span style="font-family:'Pluto','Outfit',sans-serif;font-weight:400;font-size:11px;color:#EB9E0C;min-width:15px;text-align:right;">10</span><span style="font-size:12px;line-height:1.5;color:#5F6A7D;">Stadtpark</span></div></div><p style="margin:20px 0 0;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#5F6A7D;">Schematische Darstellung, nicht maßstäblich</p></div>
     </div>
@@ -215,6 +236,19 @@ html:not(.wimmer-js) [data-rv],html:not(.wimmer-js) [data-rvimg]{animation:rvFal
     <h2 data-rv="1" style="margin:0 0 40px;font-family:'Pluto','Outfit',sans-serif;font-weight:200;font-size:clamp(36px,4.6vw,64px);line-height:1.15;color:#13233F;">Das Grätzl <em style="font-style:normal;color:inherit;">kennenlernen?</em></h2>
     <a data-rv="1" href="/#kontakt" style="display:inline-flex;align-items:center;gap:18px;background:#13233F;color:#FAF9F6;padding:20px 36px;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;transition:background .45s cubic-bezier(.25,1,.25,1),transform .45s cubic-bezier(.25,1,.25,1);" style-hover="background:#0F1C33;color:#FAF9F6;transform:translateY(-2px);">Kontakt aufnehmen <span aria-hidden="true">→</span></a>
   </section>
+
+  <a class="wm-band" href="/wohnungen#finder" aria-label="Wohnungsfinder öffnen">
+    <div class="wm-band-track" aria-hidden="true">
+      <span class="wm-band-item">Wohnung finden <span class="wm-arr" aria-hidden="true">→</span><i></i></span>
+      <span class="wm-band-item">19 Altbau-Wohnungen<i></i></span>
+      <span class="wm-band-item">Ein neues Dachgeschoss<i></i></span>
+      <span class="wm-band-item">Wimmergasse 20, 1050 Wien<i></i></span>
+      <span class="wm-band-item">Wohnung finden <span class="wm-arr" aria-hidden="true">→</span><i></i></span>
+      <span class="wm-band-item">19 Altbau-Wohnungen<i></i></span>
+      <span class="wm-band-item">Ein neues Dachgeschoss<i></i></span>
+      <span class="wm-band-item">Wimmergasse 20, 1050 Wien<i></i></span>
+    </div>
+  </a>
 
   <footer style="background:#0F1C33;color:#FAF9F6;padding:70px 48px 32px;">
     <div style="max-width:1360px;margin:0 auto;">
@@ -293,6 +327,53 @@ class Component extends DCLogic {
     };
     window.addEventListener('scroll', () => { if (!rvTick) { rvTick = true; requestAnimationFrame(rvCatch); } }, { passive: true });
     setTimeout(rvCatch, 100);
+    try {
+      const rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const groups = new Map();
+      document.querySelectorAll('[data-rv]').forEach((el) => { const p = el.parentElement; if (!groups.has(p)) groups.set(p, []); groups.get(p).push(el); });
+      groups.forEach((els) => { if (els.length > 1) els.forEach((el, i) => { el.style.transitionDelay = Math.min(i * 90, 450) + 'ms'; }); });
+      const ioR = new IntersectionObserver((es) => { es.forEach((en) => { if (en.isIntersecting) { en.target.setAttribute('data-rv-state', 'in'); ioR.unobserve(en.target); } }); }, { threshold: 0.1 });
+      document.querySelectorAll('[data-rule]').forEach((el) => ioR.observe(el));
+      if (!rm) {
+        const heads = Array.from(document.querySelectorAll('h2, section h1')).filter((h) => !h.closest('[data-hero]') && !h.hasAttribute('data-mask') && !h.querySelector('.wm-w') && h.textContent.trim().length && h.textContent.length < 160);
+        heads.forEach((h) => {
+          const walker = document.createTreeWalker(h, NodeFilter.SHOW_TEXT); const nodes = [];
+          while (walker.nextNode()) nodes.push(walker.currentNode);
+          let i = 0;
+          nodes.forEach((n) => {
+            if (!n.nodeValue.trim()) return;
+            const frag = document.createDocumentFragment();
+            n.nodeValue.split(/(\s+)/).forEach((part) => {
+              if (!part) return;
+              if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+              const o = document.createElement('span'); o.className = 'wm-w';
+              const sp = document.createElement('span'); sp.textContent = part; sp.style.transitionDelay = Math.min(i * 45, 700) + 'ms'; i++;
+              o.appendChild(sp); frag.appendChild(o);
+            });
+            n.parentNode.replaceChild(frag, n);
+          });
+          h.setAttribute('data-words', '1');
+        });
+        const ioW = new IntersectionObserver((es) => { es.forEach((en) => { if (en.isIntersecting) { en.target.setAttribute('data-words-in', '1'); ioW.unobserve(en.target); } }); }, { threshold: 0.2 });
+        heads.forEach((h) => ioW.observe(h));
+        let tickW = false;
+        window.addEventListener('scroll', () => { if (tickW) return; tickW = true; setTimeout(() => { tickW = false; const vh = window.innerHeight; heads.forEach((h) => { const r = h.getBoundingClientRect(); if (r.top < vh && r.bottom > 0) h.setAttribute('data-words-in', '1'); }); document.querySelectorAll('[data-rule]').forEach((el) => { const r = el.getBoundingClientRect(); if (r.top < vh && r.bottom > 0) el.setAttribute('data-rv-state', 'in'); }); }, 80); }, { passive: true });
+        setTimeout(() => heads.forEach((h) => { const r = h.getBoundingClientRect(); if (r.top < window.innerHeight && r.bottom > 0) h.setAttribute('data-words-in', '1'); }), 150);
+      }
+      document.querySelectorAll('[data-acc-btn]').forEach((b) => b.addEventListener('click', () => { const it = b.closest('[data-acc-item]'); if (!it) return; if (it.hasAttribute('data-open')) it.removeAttribute('data-open'); else it.setAttribute('data-open', '1'); }));
+      const cioK = new IntersectionObserver((es) => {
+        es.forEach((en) => {
+          if (!en.isIntersecting) return;
+          cioK.unobserve(en.target);
+          const el = en.target, target = parseInt(el.getAttribute('data-count'), 10);
+          if (rm || isNaN(target)) return;
+          const t0 = performance.now();
+          const step = (t) => { const p = Math.min(1, (t - t0) / 1500), e = 1 - Math.pow(1 - p, 3); el.textContent = Math.round(e * target); if (p < 1) requestAnimationFrame(step); };
+          requestAnimationFrame(step);
+        });
+      }, { threshold: 0.5 });
+      document.querySelectorAll('[data-count]').forEach((el) => cioK.observe(el));
+    } catch (e) {}
     const rmap = document.querySelector('[data-radius]');
     if (rmap) {
       const rings = Array.from(rmap.querySelectorAll('.wm-ring'));

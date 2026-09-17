@@ -86,6 +86,28 @@ html:not(.wimmer-js) [data-rv],html:not(.wimmer-js) [data-rvimg]{animation:rvFal
 [data-rule]{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-bottom:14px;border-bottom:1px solid rgba(19,35,63,0.16);}
 .wm-link{display:inline-flex;align-items:center;gap:10px;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#13233F;background-image:linear-gradient(#EB9E0C,#EB9E0C);background-repeat:no-repeat;background-position:0 100%;background-size:100% 1px;padding-bottom:5px;transition:color .4s cubic-bezier(.25,1,.25,1),gap .4s cubic-bezier(.25,1,.25,1);}
 .wm-link:hover{color:#EB9E0C;gap:16px;}
+[data-acc-panel]{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s cubic-bezier(.25,1,.25,1);}
+[data-acc-item][data-open] [data-acc-panel]{grid-template-rows:1fr;}
+[data-acc-item][data-open] [data-acc-plus]{transform:rotate(45deg);background:#13233F;color:#FAF9F6;border-color:#13233F;}
+[data-acc-btn]:hover [data-acc-plus]{border-color:#EB9E0C;color:#EB9E0C;}
+[data-acc-item][data-open] [data-acc-btn]:hover [data-acc-plus]{color:#FAF9F6;border-color:#13233F;}
+[data-rvimg] img{transform:scale(1.06);transition:transform 1.6s cubic-bezier(.25,1,.25,1);}
+[data-rvimg][data-rv-state="in"] img{transform:scale(1);}
+.wm-w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.08em;margin-bottom:-.08em;}
+[data-words] .wm-w > span{display:inline-block;transform:translateY(112%);transition:transform .95s cubic-bezier(.25,1,.25,1);}
+[data-words][data-words-in] .wm-w > span{transform:none;}
+[data-rule]{position:relative;border-bottom-color:transparent !important;}
+[data-rule]:not([style*="border-bottom:none"])::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:rgba(19,35,63,0.16);transform:scaleX(0);transform-origin:left;transition:transform 1.3s cubic-bezier(.25,1,.25,1) .1s;}
+[data-rule][data-rv-state="in"]::after{transform:scaleX(1);}
+@media (prefers-reduced-motion: reduce){[data-rvimg] img{transform:none;transition:none;}[data-rule]::after{transform:none;}[data-words] .wm-w > span{transform:none;transition:none;}}
+.wm-band{display:block;overflow:hidden;background:#0F1C33;color:#FAF9F6;padding:clamp(26px,3vw,44px) 0;white-space:nowrap;}
+.wm-band:hover{color:#FAF9F6;}
+.wm-band-track{display:inline-flex;will-change:transform;animation:wmBand 46s linear infinite;}
+.wm-band-item{display:inline-flex;align-items:center;gap:clamp(26px,3vw,48px);padding-right:clamp(26px,3vw,48px);font-family:'Pluto','Outfit',sans-serif;font-weight:200;font-size:clamp(30px,4.4vw,68px);letter-spacing:0.05em;line-height:1;text-transform:uppercase;}
+.wm-band-item i{display:inline-block;width:.16em;height:.16em;background:#EB9E0C;transform:rotate(45deg);flex:none;}
+.wm-band-item .wm-arr{display:inline-block;transition:transform .5s cubic-bezier(.25,1,.25,1);}
+.wm-band:hover .wm-arr{transform:translateX(.15em);}
+@keyframes wmBand{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 </style>
 </helmet>
 <div style="background:#FAF9F6;color:#13233F;min-height:100vh;">
@@ -260,6 +282,19 @@ html:not(.wimmer-js) [data-rv],html:not(.wimmer-js) [data-rvimg]{animation:rvFal
     <a data-rv="1" href="/#kontakt" style="display:inline-flex;align-items:center;gap:18px;background:#13233F;color:#FAF9F6;padding:20px 36px;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;transition:background .45s cubic-bezier(.25,1,.25,1),transform .45s cubic-bezier(.25,1,.25,1);" style-hover="background:#0F1C33;color:#FAF9F6;transform:translateY(-2px);">Kontakt aufnehmen <span aria-hidden="true">→</span></a>
   </section>
 
+  <a class="wm-band" href="/wohnungen#finder" aria-label="Wohnungsfinder öffnen">
+    <div class="wm-band-track" aria-hidden="true">
+      <span class="wm-band-item">Wohnung finden <span class="wm-arr" aria-hidden="true">→</span><i></i></span>
+      <span class="wm-band-item">19 Altbau-Wohnungen<i></i></span>
+      <span class="wm-band-item">Ein neues Dachgeschoss<i></i></span>
+      <span class="wm-band-item">Wimmergasse 20, 1050 Wien<i></i></span>
+      <span class="wm-band-item">Wohnung finden <span class="wm-arr" aria-hidden="true">→</span><i></i></span>
+      <span class="wm-band-item">19 Altbau-Wohnungen<i></i></span>
+      <span class="wm-band-item">Ein neues Dachgeschoss<i></i></span>
+      <span class="wm-band-item">Wimmergasse 20, 1050 Wien<i></i></span>
+    </div>
+  </a>
+
   <footer style="background:#0F1C33;color:#FAF9F6;padding:70px 48px 32px;">
     <div style="max-width:1360px;margin:0 auto;">
       <div style="display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;align-items:baseline;">
@@ -333,6 +368,53 @@ class Component extends DCLogic {
     };
     window.addEventListener('scroll', () => { if (!rvTick) { rvTick = true; requestAnimationFrame(rvCatch); } }, { passive: true });
     setTimeout(rvCatch, 100);
+    try {
+      const rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const groups = new Map();
+      document.querySelectorAll('[data-rv]').forEach((el) => { const p = el.parentElement; if (!groups.has(p)) groups.set(p, []); groups.get(p).push(el); });
+      groups.forEach((els) => { if (els.length > 1) els.forEach((el, i) => { el.style.transitionDelay = Math.min(i * 90, 450) + 'ms'; }); });
+      const ioR = new IntersectionObserver((es) => { es.forEach((en) => { if (en.isIntersecting) { en.target.setAttribute('data-rv-state', 'in'); ioR.unobserve(en.target); } }); }, { threshold: 0.1 });
+      document.querySelectorAll('[data-rule]').forEach((el) => ioR.observe(el));
+      if (!rm) {
+        const heads = Array.from(document.querySelectorAll('h2, section h1')).filter((h) => !h.closest('[data-hero]') && !h.hasAttribute('data-mask') && !h.querySelector('.wm-w') && h.textContent.trim().length && h.textContent.length < 160);
+        heads.forEach((h) => {
+          const walker = document.createTreeWalker(h, NodeFilter.SHOW_TEXT); const nodes = [];
+          while (walker.nextNode()) nodes.push(walker.currentNode);
+          let i = 0;
+          nodes.forEach((n) => {
+            if (!n.nodeValue.trim()) return;
+            const frag = document.createDocumentFragment();
+            n.nodeValue.split(/(\s+)/).forEach((part) => {
+              if (!part) return;
+              if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+              const o = document.createElement('span'); o.className = 'wm-w';
+              const sp = document.createElement('span'); sp.textContent = part; sp.style.transitionDelay = Math.min(i * 45, 700) + 'ms'; i++;
+              o.appendChild(sp); frag.appendChild(o);
+            });
+            n.parentNode.replaceChild(frag, n);
+          });
+          h.setAttribute('data-words', '1');
+        });
+        const ioW = new IntersectionObserver((es) => { es.forEach((en) => { if (en.isIntersecting) { en.target.setAttribute('data-words-in', '1'); ioW.unobserve(en.target); } }); }, { threshold: 0.2 });
+        heads.forEach((h) => ioW.observe(h));
+        let tickW = false;
+        window.addEventListener('scroll', () => { if (tickW) return; tickW = true; setTimeout(() => { tickW = false; const vh = window.innerHeight; heads.forEach((h) => { const r = h.getBoundingClientRect(); if (r.top < vh && r.bottom > 0) h.setAttribute('data-words-in', '1'); }); document.querySelectorAll('[data-rule]').forEach((el) => { const r = el.getBoundingClientRect(); if (r.top < vh && r.bottom > 0) el.setAttribute('data-rv-state', 'in'); }); }, 80); }, { passive: true });
+        setTimeout(() => heads.forEach((h) => { const r = h.getBoundingClientRect(); if (r.top < window.innerHeight && r.bottom > 0) h.setAttribute('data-words-in', '1'); }), 150);
+      }
+      document.querySelectorAll('[data-acc-btn]').forEach((b) => b.addEventListener('click', () => { const it = b.closest('[data-acc-item]'); if (!it) return; if (it.hasAttribute('data-open')) it.removeAttribute('data-open'); else it.setAttribute('data-open', '1'); }));
+      const cioK = new IntersectionObserver((es) => {
+        es.forEach((en) => {
+          if (!en.isIntersecting) return;
+          cioK.unobserve(en.target);
+          const el = en.target, target = parseInt(el.getAttribute('data-count'), 10);
+          if (rm || isNaN(target)) return;
+          const t0 = performance.now();
+          const step = (t) => { const p = Math.min(1, (t - t0) / 1500), e = 1 - Math.pow(1 - p, 3); el.textContent = Math.round(e * target); if (p < 1) requestAnimationFrame(step); };
+          requestAnimationFrame(step);
+        });
+      }, { threshold: 0.5 });
+      document.querySelectorAll('[data-count]').forEach((el) => cioK.observe(el));
+    } catch (e) {}
     const paras = Array.from(document.querySelectorAll('[data-para]'));
     if (paras.length && !reduce) {
       let tickP = false;

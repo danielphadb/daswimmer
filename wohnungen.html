@@ -110,6 +110,20 @@ html:not(.wimmer-js) [data-rv],html:not(.wimmer-js) [data-rvimg]{animation:rvFal
 [data-rule]{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-bottom:14px;border-bottom:1px solid rgba(19,35,63,0.16);}
 [data-gal-track] img{-webkit-user-drag:none;pointer-events:none;}
 [data-gal-track]{-webkit-user-select:none;}
+[data-acc-panel]{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s cubic-bezier(.25,1,.25,1);}
+[data-acc-item][data-open] [data-acc-panel]{grid-template-rows:1fr;}
+[data-acc-item][data-open] [data-acc-plus]{transform:rotate(45deg);background:#13233F;color:#FAF9F6;border-color:#13233F;}
+[data-acc-btn]:hover [data-acc-plus]{border-color:#EB9E0C;color:#EB9E0C;}
+[data-acc-item][data-open] [data-acc-btn]:hover [data-acc-plus]{color:#FAF9F6;border-color:#13233F;}
+[data-rvimg] img{transform:scale(1.06);transition:transform 1.6s cubic-bezier(.25,1,.25,1);}
+[data-rvimg][data-rv-state="in"] img{transform:scale(1);}
+.wm-w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.08em;margin-bottom:-.08em;}
+[data-words] .wm-w > span{display:inline-block;transform:translateY(112%);transition:transform .95s cubic-bezier(.25,1,.25,1);}
+[data-words][data-words-in] .wm-w > span{transform:none;}
+[data-rule]{position:relative;border-bottom-color:transparent !important;}
+[data-rule]:not([style*="border-bottom:none"])::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:rgba(19,35,63,0.16);transform:scaleX(0);transform-origin:left;transition:transform 1.3s cubic-bezier(.25,1,.25,1) .1s;}
+[data-rule][data-rv-state="in"]::after{transform:scaleX(1);}
+@media (prefers-reduced-motion: reduce){[data-rvimg] img{transform:none;transition:none;}[data-rule]::after{transform:none;}[data-words] .wm-w > span{transform:none;transition:none;}}
 </style>
 </helmet>
 <div style="background:#FAF9F6;color:#13233F;min-height:100vh;">
@@ -139,11 +153,43 @@ html:not(.wimmer-js) [data-rv],html:not(.wimmer-js) [data-rvimg]{animation:rvFal
         <p style="margin:0 0 14px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#5F6A7D;">Der Bestand</p>
         <h3 style="margin:0 0 28px;font-family:'Pluto','Outfit',sans-serif;font-weight:200;font-size:34px;line-height:1.15;color:#13233F;">Sanierter Altbau</h3>
         <div style="display:flex;align-items:baseline;gap:18px;margin:0 0 30px;">
-          <span style="font-family:'Pluto','Outfit',sans-serif;font-weight:200;font-size:clamp(44px,4.6vw,64px);line-height:1;color:#13233F;white-space:nowrap;">21</span>
+          <span style="font-family:'Pluto','Outfit',sans-serif;font-weight:200;font-size:clamp(44px,4.6vw,64px);line-height:1;color:#13233F;white-space:nowrap;"><span data-count="21">21</span></span>
           <span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#5F6A7D;max-width:180px;line-height:1.5;">Einheiten im Bestand</span>
         </div>
-        <div style="display:grid;grid-template-columns:150px 1fr;gap:24px;padding:16px 2px;border-top:1px solid rgba(19,35,63,0.16);"><span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#5F6A7D;padding-top:3px;">Ebenen</span><span style="font-size:15px;line-height:1.6;color:#13233F;">Erdgeschoss bis 3. Obergeschoss</span></div><div style="display:grid;grid-template-columns:150px 1fr;gap:24px;padding:16px 2px;border-top:1px solid rgba(19,35,63,0.16);"><span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#5F6A7D;padding-top:3px;">Einheiten</span><span style="font-size:15px;line-height:1.6;color:#13233F;">19 Wohnungen, ein Geschäftslokal, ein Atelier</span></div><div style="display:grid;grid-template-columns:150px 1fr;gap:24px;padding:16px 2px;border-top:1px solid rgba(19,35,63,0.16);"><span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#5F6A7D;padding-top:3px;">Wohnflächen</span><span style="font-size:15px;line-height:1.6;color:#13233F;">ca. 23 bis 77 m²</span></div><div style="display:grid;grid-template-columns:150px 1fr;gap:24px;padding:16px 2px;border-top:1px solid rgba(19,35,63,0.16);"><span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#5F6A7D;padding-top:3px;">Freiflächen</span><span style="font-size:15px;line-height:1.6;color:#13233F;">Loggien Top 5, 12, 19, 26 · Eigengarten Top 5</span></div><div style="display:grid;grid-template-columns:150px 1fr;gap:24px;padding:16px 2px;border-top:1px solid rgba(19,35,63,0.16);"><span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#5F6A7D;padding-top:3px;">Ausstattung</span><span style="font-size:15px;line-height:1.6;color:#13233F;">Neue Fenster und Wohnungseingangstüren in den freien Einheiten, erneuerte Leitungen (Wasser, Strom, Kanal, Gegensprechanlage) bis zur Wohnungstür</span></div><div style="display:grid;grid-template-columns:150px 1fr;gap:24px;padding:16px 2px;border-top:1px solid rgba(19,35,63,0.16);"><span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#5F6A7D;padding-top:3px;">Heizung</span><span style="font-size:15px;line-height:1.6;color:#13233F;">Gasanschluss je Wohnung, Brennwerttherme möglich</span></div><div style="display:grid;grid-template-columns:150px 1fr;gap:24px;padding:16px 2px;border-top:1px solid rgba(19,35,63,0.16);"><span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#5F6A7D;padding-top:3px;">Raumhöhe</span><span style="font-size:15px;line-height:1.6;color:#13233F;">ca. 3 Meter</span></div><div style="display:grid;grid-template-columns:150px 1fr;gap:24px;padding:16px 2px;border-top:1px solid rgba(19,35,63,0.16);border-bottom:1px solid rgba(19,35,63,0.16);"><span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#5F6A7D;padding-top:3px;">Verkauf</span><span style="font-size:15px;line-height:1.6;color:#13233F;">Unsaniert, Ausbau nach Ihren Vorstellungen</span></div>
-      </div>
+        <div data-acc="1" style="border-bottom:1px solid rgba(19,35,63,0.16);">
+  <div data-acc-item="1" style="border-top:1px solid rgba(19,35,63,0.16);">
+    <button data-acc-btn="1" type="button" style="width:100%;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:18px 2px;background:none;border:none;cursor:pointer;text-align:left;font-family:'Outfit',sans-serif;color:#13233F;border-radius:0;"><span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#13233F;">Ebenen</span><span data-acc-plus="1" aria-hidden="true" style="width:22px;height:22px;border-radius:50%;border:1px solid rgba(19,35,63,0.4);display:inline-flex;align-items:center;justify-content:center;font-size:15px;line-height:1;color:#13233F;flex:none;transition:transform .5s cubic-bezier(.25,1,.25,1),background .4s,color .4s,border-color .4s;">+</span></button>
+    <div data-acc-panel="1"><div style="overflow:hidden;"><p style="margin:0;padding:0 2px 20px;font-size:15px;line-height:1.65;color:#5F6A7D;max-width:640px;text-wrap:pretty;">Erdgeschoss bis 3. Obergeschoss</p></div></div>
+  </div>
+  <div data-acc-item="1" style="border-top:1px solid rgba(19,35,63,0.16);">
+    <button data-acc-btn="1" type="button" style="width:100%;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:18px 2px;background:none;border:none;cursor:pointer;text-align:left;font-family:'Outfit',sans-serif;color:#13233F;border-radius:0;"><span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#13233F;">Einheiten</span><span data-acc-plus="1" aria-hidden="true" style="width:22px;height:22px;border-radius:50%;border:1px solid rgba(19,35,63,0.4);display:inline-flex;align-items:center;justify-content:center;font-size:15px;line-height:1;color:#13233F;flex:none;transition:transform .5s cubic-bezier(.25,1,.25,1),background .4s,color .4s,border-color .4s;">+</span></button>
+    <div data-acc-panel="1"><div style="overflow:hidden;"><p style="margin:0;padding:0 2px 20px;font-size:15px;line-height:1.65;color:#5F6A7D;max-width:640px;text-wrap:pretty;">19 Wohnungen, ein Geschäftslokal, ein Atelier</p></div></div>
+  </div>
+  <div data-acc-item="1" style="border-top:1px solid rgba(19,35,63,0.16);">
+    <button data-acc-btn="1" type="button" style="width:100%;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:18px 2px;background:none;border:none;cursor:pointer;text-align:left;font-family:'Outfit',sans-serif;color:#13233F;border-radius:0;"><span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#13233F;">Wohnflächen</span><span data-acc-plus="1" aria-hidden="true" style="width:22px;height:22px;border-radius:50%;border:1px solid rgba(19,35,63,0.4);display:inline-flex;align-items:center;justify-content:center;font-size:15px;line-height:1;color:#13233F;flex:none;transition:transform .5s cubic-bezier(.25,1,.25,1),background .4s,color .4s,border-color .4s;">+</span></button>
+    <div data-acc-panel="1"><div style="overflow:hidden;"><p style="margin:0;padding:0 2px 20px;font-size:15px;line-height:1.65;color:#5F6A7D;max-width:640px;text-wrap:pretty;">ca. 23 bis 77 m²</p></div></div>
+  </div>
+  <div data-acc-item="1" style="border-top:1px solid rgba(19,35,63,0.16);">
+    <button data-acc-btn="1" type="button" style="width:100%;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:18px 2px;background:none;border:none;cursor:pointer;text-align:left;font-family:'Outfit',sans-serif;color:#13233F;border-radius:0;"><span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#13233F;">Freiflächen</span><span data-acc-plus="1" aria-hidden="true" style="width:22px;height:22px;border-radius:50%;border:1px solid rgba(19,35,63,0.4);display:inline-flex;align-items:center;justify-content:center;font-size:15px;line-height:1;color:#13233F;flex:none;transition:transform .5s cubic-bezier(.25,1,.25,1),background .4s,color .4s,border-color .4s;">+</span></button>
+    <div data-acc-panel="1"><div style="overflow:hidden;"><p style="margin:0;padding:0 2px 20px;font-size:15px;line-height:1.65;color:#5F6A7D;max-width:640px;text-wrap:pretty;">Loggien Top 5, 12, 19, 26 · Eigengarten Top 5</p></div></div>
+  </div>
+  <div data-acc-item="1" style="border-top:1px solid rgba(19,35,63,0.16);">
+    <button data-acc-btn="1" type="button" style="width:100%;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:18px 2px;background:none;border:none;cursor:pointer;text-align:left;font-family:'Outfit',sans-serif;color:#13233F;border-radius:0;"><span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#13233F;">Ausstattung</span><span data-acc-plus="1" aria-hidden="true" style="width:22px;height:22px;border-radius:50%;border:1px solid rgba(19,35,63,0.4);display:inline-flex;align-items:center;justify-content:center;font-size:15px;line-height:1;color:#13233F;flex:none;transition:transform .5s cubic-bezier(.25,1,.25,1),background .4s,color .4s,border-color .4s;">+</span></button>
+    <div data-acc-panel="1"><div style="overflow:hidden;"><p style="margin:0;padding:0 2px 20px;font-size:15px;line-height:1.65;color:#5F6A7D;max-width:640px;text-wrap:pretty;">Neue Fenster und Wohnungseingangstüren in den freien Einheiten, erneuerte Leitungen (Wasser, Strom, Kanal, Gegensprechanlage) bis zur Wohnungstür</p></div></div>
+  </div>
+  <div data-acc-item="1" style="border-top:1px solid rgba(19,35,63,0.16);">
+    <button data-acc-btn="1" type="button" style="width:100%;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:18px 2px;background:none;border:none;cursor:pointer;text-align:left;font-family:'Outfit',sans-serif;color:#13233F;border-radius:0;"><span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#13233F;">Heizung</span><span data-acc-plus="1" aria-hidden="true" style="width:22px;height:22px;border-radius:50%;border:1px solid rgba(19,35,63,0.4);display:inline-flex;align-items:center;justify-content:center;font-size:15px;line-height:1;color:#13233F;flex:none;transition:transform .5s cubic-bezier(.25,1,.25,1),background .4s,color .4s,border-color .4s;">+</span></button>
+    <div data-acc-panel="1"><div style="overflow:hidden;"><p style="margin:0;padding:0 2px 20px;font-size:15px;line-height:1.65;color:#5F6A7D;max-width:640px;text-wrap:pretty;">Gasanschluss je Wohnung, Brennwerttherme möglich</p></div></div>
+  </div>
+  <div data-acc-item="1" style="border-top:1px solid rgba(19,35,63,0.16);">
+    <button data-acc-btn="1" type="button" style="width:100%;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:18px 2px;background:none;border:none;cursor:pointer;text-align:left;font-family:'Outfit',sans-serif;color:#13233F;border-radius:0;"><span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#13233F;">Raumhöhe</span><span data-acc-plus="1" aria-hidden="true" style="width:22px;height:22px;border-radius:50%;border:1px solid rgba(19,35,63,0.4);display:inline-flex;align-items:center;justify-content:center;font-size:15px;line-height:1;color:#13233F;flex:none;transition:transform .5s cubic-bezier(.25,1,.25,1),background .4s,color .4s,border-color .4s;">+</span></button>
+    <div data-acc-panel="1"><div style="overflow:hidden;"><p style="margin:0;padding:0 2px 20px;font-size:15px;line-height:1.65;color:#5F6A7D;max-width:640px;text-wrap:pretty;">ca. 3 Meter</p></div></div>
+  </div>
+  <div data-acc-item="1" style="border-top:1px solid rgba(19,35,63,0.16);">
+    <button data-acc-btn="1" type="button" style="width:100%;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:18px 2px;background:none;border:none;cursor:pointer;text-align:left;font-family:'Outfit',sans-serif;color:#13233F;border-radius:0;"><span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#13233F;">Verkauf</span><span data-acc-plus="1" aria-hidden="true" style="width:22px;height:22px;border-radius:50%;border:1px solid rgba(19,35,63,0.4);display:inline-flex;align-items:center;justify-content:center;font-size:15px;line-height:1;color:#13233F;flex:none;transition:transform .5s cubic-bezier(.25,1,.25,1),background .4s,color .4s,border-color .4s;">+</span></button>
+    <div data-acc-panel="1"><div style="overflow:hidden;"><p style="margin:0;padding:0 2px 20px;font-size:15px;line-height:1.65;color:#5F6A7D;max-width:640px;text-wrap:pretty;">Unsaniert, Ausbau nach Ihren Vorstellungen</p></div></div>
+  </div>
+</div></div>
       <div data-rv="1">
         <div data-rvimg="1" style="aspect-ratio:16/10;margin:0 0 32px;overflow:hidden;"><img src="/assets/wohnungen-dach.webp" width="810" height="506" loading="lazy" decoding="async" data-para="0.96" data-para-scale="1.12" alt="Neues Dachgeschoss: drei Ebenen über dem Bestand (Rendering, Symbolbild)" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
         <p style="margin:0 0 14px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#5F6A7D;">Das Dach</p>
@@ -152,8 +198,36 @@ html:not(.wimmer-js) [data-rv],html:not(.wimmer-js) [data-rvimg]{animation:rvFal
           <span style="font-family:'Pluto','Outfit',sans-serif;font-weight:200;font-size:clamp(44px,4.6vw,64px);line-height:1;color:#13233F;white-space:nowrap;">ca. 713 m²</span>
           <span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#5F6A7D;max-width:180px;line-height:1.5;">bewilligte gewichtete Nutzfläche</span>
         </div>
-        <div style="display:grid;grid-template-columns:150px 1fr;gap:24px;padding:16px 2px;border-top:1px solid rgba(19,35,63,0.16);"><span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#5F6A7D;padding-top:3px;">Ebenen</span><span style="font-size:15px;line-height:1.6;color:#13233F;">1. bis 3. Dachgeschoss</span></div><div style="display:grid;grid-template-columns:150px 1fr;gap:24px;padding:16px 2px;border-top:1px solid rgba(19,35,63,0.16);"><span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#5F6A7D;padding-top:3px;">Nutzfläche</span><span style="font-size:15px;line-height:1.6;color:#13233F;">ca. 713 m² bewilligte gewichtete Nutzfläche</span></div><div style="display:grid;grid-template-columns:150px 1fr;gap:24px;padding:16px 2px;border-top:1px solid rgba(19,35,63,0.16);"><span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#5F6A7D;padding-top:3px;">Status</span><span style="font-size:15px;line-height:1.6;color:#13233F;">Baubewilligt</span></div><div style="display:grid;grid-template-columns:150px 1fr;gap:24px;padding:16px 2px;border-top:1px solid rgba(19,35,63,0.16);"><span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#5F6A7D;padding-top:3px;">Freiflächen</span><span style="font-size:15px;line-height:1.6;color:#13233F;">Dachterrassen laut Planung</span></div><div style="display:grid;grid-template-columns:150px 1fr;gap:24px;padding:16px 2px;border-top:1px solid rgba(19,35,63,0.16);"><span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#5F6A7D;padding-top:3px;">Vorleistungen</span><span style="font-size:15px;line-height:1.6;color:#13233F;">Aufzugsfundament, Verpressung des Mauerwerks, Bodenplatte, Erneuerung der Kanalanlage, Fassadensanierung, Steigschächte und Aufzugsschacht bis Oberkante Innenhof</span></div><div style="display:grid;grid-template-columns:150px 1fr;gap:24px;padding:16px 2px;border-top:1px solid rgba(19,35,63,0.16);"><span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#5F6A7D;padding-top:3px;">Verkauf</span><span style="font-size:15px;line-height:1.6;color:#13233F;">Als Gesamtprojekt, auf Anfrage</span></div><div style="display:grid;grid-template-columns:150px 1fr;gap:24px;padding:16px 2px;border-top:1px solid rgba(19,35,63,0.16);border-bottom:1px solid rgba(19,35,63,0.16);"><span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#5F6A7D;padding-top:3px;">Unterlagen</span><span style="font-size:15px;line-height:1.6;color:#13233F;"><a href="/bautraeger" style="color:#13233F;border-bottom:1px solid #EB9E0C;padding-bottom:1px;">Folder mit allen Maßnahmen</a></span></div>
-      </div>
+        <div data-acc="1" style="border-bottom:1px solid rgba(19,35,63,0.16);">
+  <div data-acc-item="1" style="border-top:1px solid rgba(19,35,63,0.16);">
+    <button data-acc-btn="1" type="button" style="width:100%;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:18px 2px;background:none;border:none;cursor:pointer;text-align:left;font-family:'Outfit',sans-serif;color:#13233F;border-radius:0;"><span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#13233F;">Ebenen</span><span data-acc-plus="1" aria-hidden="true" style="width:22px;height:22px;border-radius:50%;border:1px solid rgba(19,35,63,0.4);display:inline-flex;align-items:center;justify-content:center;font-size:15px;line-height:1;color:#13233F;flex:none;transition:transform .5s cubic-bezier(.25,1,.25,1),background .4s,color .4s,border-color .4s;">+</span></button>
+    <div data-acc-panel="1"><div style="overflow:hidden;"><p style="margin:0;padding:0 2px 20px;font-size:15px;line-height:1.65;color:#5F6A7D;max-width:640px;text-wrap:pretty;">1. bis 3. Dachgeschoss</p></div></div>
+  </div>
+  <div data-acc-item="1" style="border-top:1px solid rgba(19,35,63,0.16);">
+    <button data-acc-btn="1" type="button" style="width:100%;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:18px 2px;background:none;border:none;cursor:pointer;text-align:left;font-family:'Outfit',sans-serif;color:#13233F;border-radius:0;"><span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#13233F;">Nutzfläche</span><span data-acc-plus="1" aria-hidden="true" style="width:22px;height:22px;border-radius:50%;border:1px solid rgba(19,35,63,0.4);display:inline-flex;align-items:center;justify-content:center;font-size:15px;line-height:1;color:#13233F;flex:none;transition:transform .5s cubic-bezier(.25,1,.25,1),background .4s,color .4s,border-color .4s;">+</span></button>
+    <div data-acc-panel="1"><div style="overflow:hidden;"><p style="margin:0;padding:0 2px 20px;font-size:15px;line-height:1.65;color:#5F6A7D;max-width:640px;text-wrap:pretty;">ca. 713 m² bewilligte gewichtete Nutzfläche</p></div></div>
+  </div>
+  <div data-acc-item="1" style="border-top:1px solid rgba(19,35,63,0.16);">
+    <button data-acc-btn="1" type="button" style="width:100%;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:18px 2px;background:none;border:none;cursor:pointer;text-align:left;font-family:'Outfit',sans-serif;color:#13233F;border-radius:0;"><span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#13233F;">Status</span><span data-acc-plus="1" aria-hidden="true" style="width:22px;height:22px;border-radius:50%;border:1px solid rgba(19,35,63,0.4);display:inline-flex;align-items:center;justify-content:center;font-size:15px;line-height:1;color:#13233F;flex:none;transition:transform .5s cubic-bezier(.25,1,.25,1),background .4s,color .4s,border-color .4s;">+</span></button>
+    <div data-acc-panel="1"><div style="overflow:hidden;"><p style="margin:0;padding:0 2px 20px;font-size:15px;line-height:1.65;color:#5F6A7D;max-width:640px;text-wrap:pretty;">Baubewilligt</p></div></div>
+  </div>
+  <div data-acc-item="1" style="border-top:1px solid rgba(19,35,63,0.16);">
+    <button data-acc-btn="1" type="button" style="width:100%;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:18px 2px;background:none;border:none;cursor:pointer;text-align:left;font-family:'Outfit',sans-serif;color:#13233F;border-radius:0;"><span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#13233F;">Freiflächen</span><span data-acc-plus="1" aria-hidden="true" style="width:22px;height:22px;border-radius:50%;border:1px solid rgba(19,35,63,0.4);display:inline-flex;align-items:center;justify-content:center;font-size:15px;line-height:1;color:#13233F;flex:none;transition:transform .5s cubic-bezier(.25,1,.25,1),background .4s,color .4s,border-color .4s;">+</span></button>
+    <div data-acc-panel="1"><div style="overflow:hidden;"><p style="margin:0;padding:0 2px 20px;font-size:15px;line-height:1.65;color:#5F6A7D;max-width:640px;text-wrap:pretty;">Dachterrassen laut Planung</p></div></div>
+  </div>
+  <div data-acc-item="1" style="border-top:1px solid rgba(19,35,63,0.16);">
+    <button data-acc-btn="1" type="button" style="width:100%;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:18px 2px;background:none;border:none;cursor:pointer;text-align:left;font-family:'Outfit',sans-serif;color:#13233F;border-radius:0;"><span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#13233F;">Vorleistungen</span><span data-acc-plus="1" aria-hidden="true" style="width:22px;height:22px;border-radius:50%;border:1px solid rgba(19,35,63,0.4);display:inline-flex;align-items:center;justify-content:center;font-size:15px;line-height:1;color:#13233F;flex:none;transition:transform .5s cubic-bezier(.25,1,.25,1),background .4s,color .4s,border-color .4s;">+</span></button>
+    <div data-acc-panel="1"><div style="overflow:hidden;"><p style="margin:0;padding:0 2px 20px;font-size:15px;line-height:1.65;color:#5F6A7D;max-width:640px;text-wrap:pretty;">Aufzugsfundament, Verpressung des Mauerwerks, Bodenplatte, Erneuerung der Kanalanlage, Fassadensanierung, Steigschächte und Aufzugsschacht bis Oberkante Innenhof</p></div></div>
+  </div>
+  <div data-acc-item="1" style="border-top:1px solid rgba(19,35,63,0.16);">
+    <button data-acc-btn="1" type="button" style="width:100%;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:18px 2px;background:none;border:none;cursor:pointer;text-align:left;font-family:'Outfit',sans-serif;color:#13233F;border-radius:0;"><span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#13233F;">Verkauf</span><span data-acc-plus="1" aria-hidden="true" style="width:22px;height:22px;border-radius:50%;border:1px solid rgba(19,35,63,0.4);display:inline-flex;align-items:center;justify-content:center;font-size:15px;line-height:1;color:#13233F;flex:none;transition:transform .5s cubic-bezier(.25,1,.25,1),background .4s,color .4s,border-color .4s;">+</span></button>
+    <div data-acc-panel="1"><div style="overflow:hidden;"><p style="margin:0;padding:0 2px 20px;font-size:15px;line-height:1.65;color:#5F6A7D;max-width:640px;text-wrap:pretty;">Als Gesamtprojekt, auf Anfrage</p></div></div>
+  </div>
+  <div data-acc-item="1" style="border-top:1px solid rgba(19,35,63,0.16);">
+    <button data-acc-btn="1" type="button" style="width:100%;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:18px 2px;background:none;border:none;cursor:pointer;text-align:left;font-family:'Outfit',sans-serif;color:#13233F;border-radius:0;"><span style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#13233F;">Unterlagen</span><span data-acc-plus="1" aria-hidden="true" style="width:22px;height:22px;border-radius:50%;border:1px solid rgba(19,35,63,0.4);display:inline-flex;align-items:center;justify-content:center;font-size:15px;line-height:1;color:#13233F;flex:none;transition:transform .5s cubic-bezier(.25,1,.25,1),background .4s,color .4s,border-color .4s;">+</span></button>
+    <div data-acc-panel="1"><div style="overflow:hidden;"><p style="margin:0;padding:0 2px 20px;font-size:15px;line-height:1.65;color:#5F6A7D;max-width:640px;text-wrap:pretty;"><a href="/bautraeger" style="color:#13233F;border-bottom:1px solid #EB9E0C;padding-bottom:1px;">Folder mit allen Maßnahmen</a></p></div></div>
+  </div>
+</div></div>
     </div>
   </section>
 
@@ -574,6 +648,53 @@ class Component extends DCLogic {
     };
     window.addEventListener('scroll', () => { if (!rvTick) { rvTick = true; requestAnimationFrame(rvCatch); } }, { passive: true });
     setTimeout(rvCatch, 100);
+    try {
+      const rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const groups = new Map();
+      document.querySelectorAll('[data-rv]').forEach((el) => { const p = el.parentElement; if (!groups.has(p)) groups.set(p, []); groups.get(p).push(el); });
+      groups.forEach((els) => { if (els.length > 1) els.forEach((el, i) => { el.style.transitionDelay = Math.min(i * 90, 450) + 'ms'; }); });
+      const ioR = new IntersectionObserver((es) => { es.forEach((en) => { if (en.isIntersecting) { en.target.setAttribute('data-rv-state', 'in'); ioR.unobserve(en.target); } }); }, { threshold: 0.1 });
+      document.querySelectorAll('[data-rule]').forEach((el) => ioR.observe(el));
+      if (!rm) {
+        const heads = Array.from(document.querySelectorAll('h2, section h1')).filter((h) => !h.closest('[data-hero]') && !h.hasAttribute('data-mask') && !h.querySelector('.wm-w') && h.textContent.trim().length && h.textContent.length < 160);
+        heads.forEach((h) => {
+          const walker = document.createTreeWalker(h, NodeFilter.SHOW_TEXT); const nodes = [];
+          while (walker.nextNode()) nodes.push(walker.currentNode);
+          let i = 0;
+          nodes.forEach((n) => {
+            if (!n.nodeValue.trim()) return;
+            const frag = document.createDocumentFragment();
+            n.nodeValue.split(/(\s+)/).forEach((part) => {
+              if (!part) return;
+              if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+              const o = document.createElement('span'); o.className = 'wm-w';
+              const sp = document.createElement('span'); sp.textContent = part; sp.style.transitionDelay = Math.min(i * 45, 700) + 'ms'; i++;
+              o.appendChild(sp); frag.appendChild(o);
+            });
+            n.parentNode.replaceChild(frag, n);
+          });
+          h.setAttribute('data-words', '1');
+        });
+        const ioW = new IntersectionObserver((es) => { es.forEach((en) => { if (en.isIntersecting) { en.target.setAttribute('data-words-in', '1'); ioW.unobserve(en.target); } }); }, { threshold: 0.2 });
+        heads.forEach((h) => ioW.observe(h));
+        let tickW = false;
+        window.addEventListener('scroll', () => { if (tickW) return; tickW = true; setTimeout(() => { tickW = false; const vh = window.innerHeight; heads.forEach((h) => { const r = h.getBoundingClientRect(); if (r.top < vh && r.bottom > 0) h.setAttribute('data-words-in', '1'); }); document.querySelectorAll('[data-rule]').forEach((el) => { const r = el.getBoundingClientRect(); if (r.top < vh && r.bottom > 0) el.setAttribute('data-rv-state', 'in'); }); }, 80); }, { passive: true });
+        setTimeout(() => heads.forEach((h) => { const r = h.getBoundingClientRect(); if (r.top < window.innerHeight && r.bottom > 0) h.setAttribute('data-words-in', '1'); }), 150);
+      }
+      document.querySelectorAll('[data-acc-btn]').forEach((b) => b.addEventListener('click', () => { const it = b.closest('[data-acc-item]'); if (!it) return; if (it.hasAttribute('data-open')) it.removeAttribute('data-open'); else it.setAttribute('data-open', '1'); }));
+      const cioK = new IntersectionObserver((es) => {
+        es.forEach((en) => {
+          if (!en.isIntersecting) return;
+          cioK.unobserve(en.target);
+          const el = en.target, target = parseInt(el.getAttribute('data-count'), 10);
+          if (rm || isNaN(target)) return;
+          const t0 = performance.now();
+          const step = (t) => { const p = Math.min(1, (t - t0) / 1500), e = 1 - Math.pow(1 - p, 3); el.textContent = Math.round(e * target); if (p < 1) requestAnimationFrame(step); };
+          requestAnimationFrame(step);
+        });
+      }, { threshold: 0.5 });
+      document.querySelectorAll('[data-count]').forEach((el) => cioK.observe(el));
+    } catch (e) {}
     const paras = Array.from(document.querySelectorAll('[data-para]'));
     if (paras.length && !reduce) {
       let tickP = false;
