@@ -45,9 +45,11 @@ a:hover{color:#EB9E0C;}
 .wm-link:hover{color:#EB9E0C;gap:16px;}
 [data-acc-panel]{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s cubic-bezier(.25,1,.25,1);}
 [data-acc-item][data-open] [data-acc-panel]{grid-template-rows:1fr;}
-[data-acc-item][data-open] [data-acc-plus]{transform:rotate(45deg);background:#13233F;color:#FAF9F6;border-color:#13233F;}
+[data-acc-plus]{position:relative;}
+[data-acc-item][data-open] [data-acc-plus]{background:#13233F;color:transparent;border-color:#13233F;}
+[data-acc-item][data-open] [data-acc-plus]::after{content:"";position:absolute;left:50%;top:50%;width:9px;height:1px;margin:0 0 0 -4.5px;background:#FAF9F6;}
 [data-acc-btn]:hover [data-acc-plus]{border-color:#EB9E0C;color:#EB9E0C;}
-[data-acc-item][data-open] [data-acc-btn]:hover [data-acc-plus]{color:#FAF9F6;border-color:#13233F;}
+[data-acc-item][data-open] [data-acc-btn]:hover [data-acc-plus]{color:transparent;border-color:#13233F;}
 [data-rvimg] img{transform:scale(1.06);transition:transform 1.6s cubic-bezier(.25,1,.25,1);}
 [data-rvimg][data-rv-state="in"] img{transform:scale(1);}
 .wm-w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.08em;margin-bottom:-.08em;}
@@ -79,7 +81,7 @@ a:hover{color:#EB9E0C;}
     </nav>
     <a href="/wohnungen#finder" style="font-family:'Outfit',sans-serif;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#13233F;border-bottom:1px solid rgba(19,35,63,0.4);padding-bottom:3px;transition:border-color .45s cubic-bezier(.25,1,.25,1),color .45s cubic-bezier(.25,1,.25,1);" style-hover="border-bottom-color:#EB9E0C;color:#EB9E0C;">Anfragen</a>
   </header>
-  <section style="max-width:1360px;margin:0 auto;padding:90px 48px 70px;">
+  <section style="max-width:1360px;margin:0 auto;padding:116px 48px 92px;">
     <div data-rule="1" style="border-bottom:none;padding-bottom:0;margin-bottom:40px;"><span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#5F6A7D;">01</span><span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#13233F;text-align:right;">Bauträger</span></div>
     <h1 style="margin:0 0 60px;font-family:'Pluto','Outfit',sans-serif;font-weight:200;font-size:clamp(44px,6.2vw,86px);line-height:1.05;color:#13233F;max-width:960px;text-wrap:pretty;">Eine gemeinsame <em style="font-style:normal;color:inherit;">Vision.</em></h1>
     <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:start;">
@@ -93,7 +95,7 @@ a:hover{color:#EB9E0C;}
     </div>
   </section>
 
-  <section style="max-width:1360px;margin:0 auto;padding:0 48px 90px;">
+  <section style="max-width:1360px;margin:0 auto;padding:0 48px 116px;">
     <div data-rule="1" style="margin-bottom:24px;"><span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#5F6A7D;">02</span><span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#13233F;text-align:right;">Bereits umgesetzt</span></div>
     <h2 style="margin:0 0 18px;font-family:'Pluto','Outfit',sans-serif;font-weight:200;font-size:clamp(32px,3.6vw,52px);line-height:1.12;color:#13233F;max-width:860px;text-wrap:pretty;">Werte, die bereits geschaffen wurden.</h2>
     <p style="margin:0 0 44px;font-size:15px;line-height:1.7;color:#5F6A7D;max-width:640px;text-wrap:pretty;">Die allgemeinen Teile der Liegenschaft werden umfassend revitalisiert und technisch für die weitere Entwicklung vorbereitet.</p>
@@ -130,7 +132,7 @@ a:hover{color:#EB9E0C;}
     <p style="margin:16px 0 0;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#5F6A7D;">Quelle: Maßnahmenübersicht W20-Development GmbH · Projektstand Oktober 2026</p>
   </section>
 
-  <section style="max-width:1360px;margin:0 auto;padding:0 48px 100px;">
+  <section style="max-width:1360px;margin:0 auto;padding:0 48px 128px;">
     <div data-rule="1" style="margin-bottom:24px;"><span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#5F6A7D;">03</span><span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#13233F;text-align:right;">Unterlagen</span></div>
     <h2 style="margin:0 0 44px;font-family:'Pluto','Outfit',sans-serif;font-weight:200;font-size:clamp(32px,3.6vw,52px);line-height:1.12;color:#13233F;max-width:860px;text-wrap:pretty;">Zum Durchblättern und Mitnehmen.</h2>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;"><div style="border:1px solid rgba(19,35,63,0.16);background:#FFFFFF;display:flex;flex-direction:column;">
@@ -161,7 +163,7 @@ a:hover{color:#EB9E0C;}
       </div></div>
   </section>
 
-  <section id="produktkatalog" style="max-width:1360px;margin:0 auto;padding:0 48px 100px;">
+  <section id="produktkatalog" style="max-width:1360px;margin:0 auto;padding:0 48px 128px;">
     <div data-rule="1" style="margin-bottom:24px;"><span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#5F6A7D;">04</span><span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#13233F;text-align:right;">Produktkatalog</span></div>
     <h2 style="margin:0 0 44px;font-family:'Pluto','Outfit',sans-serif;font-weight:200;font-size:clamp(32px,3.6vw,52px);line-height:1.12;color:#13233F;max-width:860px;">Ausstattungs- und Produktkatalog.</h2>
     <div data-kat="1" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,380px);gap:clamp(32px,6vw,96px);align-items:center;">
@@ -241,7 +243,7 @@ class Component extends DCLogic {
       const groups = new Map();
       document.querySelectorAll('[data-rv]').forEach((el) => { const p = el.parentElement; if (!groups.has(p)) groups.set(p, []); groups.get(p).push(el); });
       groups.forEach((els) => { if (els.length > 1) els.forEach((el, i) => { el.style.transitionDelay = Math.min(i * 90, 450) + 'ms'; }); });
-      const ioR = new IntersectionObserver((es) => { es.forEach((en) => { if (en.isIntersecting) { en.target.setAttribute('data-rv-state', 'in'); ioR.unobserve(en.target); } }); }, { threshold: 0.1 });
+      const ioR = new IntersectionObserver((es) => { es.forEach((en) => { if (en.isIntersecting) en.target.setAttribute('data-rv-state', 'in'); else en.target.removeAttribute('data-rv-state'); }); }, { threshold: 0.1 });
       document.querySelectorAll('[data-rule]').forEach((el) => ioR.observe(el));
       if (!rm) {
         const heads = Array.from(document.querySelectorAll('h2, section h1')).filter((h) => !h.closest('[data-hero]') && !h.hasAttribute('data-mask') && !h.querySelector('.wm-w') && h.textContent.trim().length && h.textContent.length < 160);
@@ -263,13 +265,13 @@ class Component extends DCLogic {
           });
           h.setAttribute('data-words', '1');
         });
-        const ioW = new IntersectionObserver((es) => { es.forEach((en) => { if (en.isIntersecting) { en.target.setAttribute('data-words-in', '1'); ioW.unobserve(en.target); } }); }, { threshold: 0.2 });
+        const ioW = new IntersectionObserver((es) => { es.forEach((en) => { if (en.isIntersecting) en.target.setAttribute('data-words-in', '1'); else en.target.removeAttribute('data-words-in'); }); }, { threshold: 0.2 });
         heads.forEach((h) => ioW.observe(h));
         let tickW = false;
-        window.addEventListener('scroll', () => { if (tickW) return; tickW = true; setTimeout(() => { tickW = false; const vh = window.innerHeight; heads.forEach((h) => { const r = h.getBoundingClientRect(); if (r.top < vh && r.bottom > 0) h.setAttribute('data-words-in', '1'); }); document.querySelectorAll('[data-rule]').forEach((el) => { const r = el.getBoundingClientRect(); if (r.top < vh && r.bottom > 0) el.setAttribute('data-rv-state', 'in'); }); }, 80); }, { passive: true });
+        window.addEventListener('scroll', () => { if (tickW) return; tickW = true; setTimeout(() => { tickW = false; const vh = window.innerHeight; heads.forEach((h) => { const r = h.getBoundingClientRect(); if (r.top < vh && r.bottom > 0) h.setAttribute('data-words-in', '1'); else h.removeAttribute('data-words-in'); }); document.querySelectorAll('[data-rule]').forEach((el) => { const r = el.getBoundingClientRect(); if (r.top < vh && r.bottom > 0) el.setAttribute('data-rv-state', 'in'); else el.removeAttribute('data-rv-state'); }); }, 80); }, { passive: true });
         setTimeout(() => heads.forEach((h) => { const r = h.getBoundingClientRect(); if (r.top < window.innerHeight && r.bottom > 0) h.setAttribute('data-words-in', '1'); }), 150);
       }
-      document.querySelectorAll('[data-acc-btn]').forEach((b) => b.addEventListener('click', () => { const it = b.closest('[data-acc-item]'); if (!it) return; if (it.hasAttribute('data-open')) it.removeAttribute('data-open'); else it.setAttribute('data-open', '1'); }));
+      document.querySelectorAll('[data-acc-btn]').forEach((b) => b.addEventListener('click', () => { const it = b.closest('[data-acc-item]'); if (!it) return; const wasOpen = it.hasAttribute('data-open'); document.querySelectorAll('[data-acc-item][data-open]').forEach((o) => o.removeAttribute('data-open')); if (!wasOpen) it.setAttribute('data-open', '1'); }));
       const cioK = new IntersectionObserver((es) => {
         es.forEach((en) => {
           if (!en.isIntersecting) return;

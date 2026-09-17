@@ -113,9 +113,11 @@ html:not(.wimmer-js) [data-rv],html:not(.wimmer-js) [data-rvimg]{animation:rvFal
 [data-gal-track]{-webkit-user-select:none;}
 [data-acc-panel]{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s cubic-bezier(.25,1,.25,1);}
 [data-acc-item][data-open] [data-acc-panel]{grid-template-rows:1fr;}
-[data-acc-item][data-open] [data-acc-plus]{transform:rotate(45deg);background:#13233F;color:#FAF9F6;border-color:#13233F;}
+[data-acc-plus]{position:relative;}
+[data-acc-item][data-open] [data-acc-plus]{background:#13233F;color:transparent;border-color:#13233F;}
+[data-acc-item][data-open] [data-acc-plus]::after{content:"";position:absolute;left:50%;top:50%;width:9px;height:1px;margin:0 0 0 -4.5px;background:#FAF9F6;}
 [data-acc-btn]:hover [data-acc-plus]{border-color:#EB9E0C;color:#EB9E0C;}
-[data-acc-item][data-open] [data-acc-btn]:hover [data-acc-plus]{color:#FAF9F6;border-color:#13233F;}
+[data-acc-item][data-open] [data-acc-btn]:hover [data-acc-plus]{color:transparent;border-color:#13233F;}
 [data-rvimg] img{transform:scale(1.06);transition:transform 1.6s cubic-bezier(.25,1,.25,1);}
 [data-rvimg][data-rv-state="in"] img{transform:scale(1);}
 .wm-w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.08em;margin-bottom:-.08em;}
@@ -148,13 +150,13 @@ html:not(.wimmer-js) [data-rv],html:not(.wimmer-js) [data-rvimg]{animation:rvFal
     <a href="/wohnungen#finder" style="font-family:'Outfit',sans-serif;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#13233F;border-bottom:1px solid rgba(19,35,63,0.4);padding-bottom:3px;transition:border-color .45s cubic-bezier(.25,1,.25,1),color .45s cubic-bezier(.25,1,.25,1);" style-hover="border-bottom-color:#EB9E0C;color:#EB9E0C;">Anfragen</a>
   </header>
 
-  <section style="max-width:1360px;margin:0 auto;padding:90px 48px 70px;">
+  <section style="max-width:1360px;margin:0 auto;padding:116px 48px 92px;">
     <div data-rv="1" data-rule="1" style="border-bottom:none;padding-bottom:0;margin-bottom:44px;"><span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#5F6A7D;">01</span><span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#13233F;text-align:right;">Lage</span></div>
     <h1 data-rv="1" style="margin:0 0 32px;font-family:'Pluto','Outfit',sans-serif;font-weight:200;font-size:clamp(44px,6.2vw,86px);line-height:1.05;color:#13233F;max-width:960px;text-wrap:pretty;">Bestens angebunden. <em style="font-style:normal;color:inherit;">Mitten im Leben.</em></h1>
     <p data-rv="1" style="margin:0;font-size:16px;line-height:1.7;color:#5F6A7D;max-width:720px;text-wrap:pretty;">Die Wimmergasse 20 verbindet urbanes Wohnen mit kurzen Wegen und einer guten Anbindung. Buslinien, U-Bahn und wichtige Ziele des täglichen Lebens sind rasch erreichbar. Der Naschmarkt, die Mariahilfer Straße und der Wiener Hauptbahnhof liegen ebenso in gut erreichbarer Nähe. Mit der künftig nur rund 2 Gehminuten entfernten U2-Station gewinnt der Standort zusätzlich an Attraktivität und öffentlicher Erreichbarkeit.</p>
   </section>
 
-  <section style="max-width:1360px;margin:0 auto;padding:0 48px 60px;">
+  <section style="max-width:1360px;margin:0 auto;padding:0 48px 80px;">
     <div data-rv="1" data-rule="1" style="margin-bottom:64px;"><span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#5F6A7D;">02</span><span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#13233F;text-align:right;">Anbindung</span></div>
     <div style="display:grid;grid-template-columns:1fr 1.15fr;gap:80px;align-items:start;">
       <div data-rv="1">
@@ -166,7 +168,7 @@ html:not(.wimmer-js) [data-rv],html:not(.wimmer-js) [data-rvimg]{animation:rvFal
     </div>
   </section>
 
-  <section style="padding:60px 0 110px;overflow:hidden;">
+  <section style="padding:80px 0 144px;overflow:hidden;">
     <div style="max-width:1360px;margin:0 auto;padding:0 48px;">
       <div data-rv="1" data-rule="1" style="margin-bottom:44px;"><span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#5F6A7D;">03</span><span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#13233F;text-align:right;">Impressionen</span></div>
       <h2 data-rv="1" style="margin:0 0 56px;font-family:'Pluto','Outfit',sans-serif;font-weight:200;font-size:clamp(32px,3.6vw,52px);line-height:1.12;color:#13233F;max-width:860px;">Das Grätzl, in Bildern.</h2>
@@ -184,7 +186,7 @@ html:not(.wimmer-js) [data-rv],html:not(.wimmer-js) [data-rvimg]{animation:rvFal
     </div>
   </section>
 
-  <section style="background:#0F1C33;color:#FAF9F6;padding:100px 48px;">
+  <section style="background:#0F1C33;color:#FAF9F6;padding:128px 48px;">
     <div style="max-width:1360px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:center;">
       <div data-rv="1">
         <div style="font-family:'Pluto','Outfit',sans-serif;font-weight:200;font-size:clamp(110px,14vw,220px);line-height:0.9;color:#FAF9F6;">Leise.</div>
@@ -198,7 +200,7 @@ html:not(.wimmer-js) [data-rv],html:not(.wimmer-js) [data-rvimg]{animation:rvFal
     </div>
   </section>
 
-  <section style="max-width:1360px;margin:0 auto;padding:110px 48px 60px;">
+  <section style="max-width:1360px;margin:0 auto;padding:144px 48px 80px;">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:start;">
       <div data-rv="1" style="position:relative;padding:28px 0 0 28px;max-width:460px;">
         <span style="position:absolute;top:0;left:0;width:22px;height:22px;border-top:1px solid rgba(19,35,63,0.4);border-left:1px solid rgba(19,35,63,0.4);"></span>
@@ -231,7 +233,7 @@ html:not(.wimmer-js) [data-rv],html:not(.wimmer-js) [data-rvimg]{animation:rvFal
     </div>
   </div>
 
-  <section style="max-width:1360px;margin:0 auto;padding:0 48px 110px;text-align:center;">
+  <section style="max-width:1360px;margin:0 auto;padding:0 48px 144px;text-align:center;">
     <span style="display:block;height:1px;background:rgba(19,35,63,0.16);margin-bottom:110px;"></span>
     <h2 data-rv="1" style="margin:0 0 40px;font-family:'Pluto','Outfit',sans-serif;font-weight:200;font-size:clamp(36px,4.6vw,64px);line-height:1.15;color:#13233F;">Das Grätzl <em style="font-style:normal;color:inherit;">kennenlernen?</em></h2>
     <a data-rv="1" href="/#kontakt" style="display:inline-flex;align-items:center;gap:18px;background:#13233F;color:#FAF9F6;padding:20px 36px;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;transition:background .45s cubic-bezier(.25,1,.25,1),transform .45s cubic-bezier(.25,1,.25,1);" style-hover="background:#0F1C33;color:#FAF9F6;transform:translateY(-2px);">Kontakt aufnehmen <span aria-hidden="true">→</span></a>
@@ -311,7 +313,7 @@ class Component extends DCLogic {
     if (location.hash) { setTimeout(() => { const t = document.querySelector(location.hash); if (t) t.scrollIntoView({ block: 'start' }); }, 400); }
     if (this.props.smoothScroll ?? true) document.documentElement.style.scrollBehavior = 'smooth';
     const io = new IntersectionObserver((es) => {
-      es.forEach((en) => { if (en.isIntersecting) { en.target.setAttribute('data-rv-state', 'in'); io.unobserve(en.target); } });
+      es.forEach((en) => { if (en.isIntersecting) en.target.setAttribute('data-rv-state', 'in'); else en.target.removeAttribute('data-rv-state'); });
     }, { threshold: 0.12 });
     document.querySelectorAll('[data-rv],[data-rvimg]').forEach((el) => io.observe(el));
     const rvAll = Array.from(document.querySelectorAll('[data-rv],[data-rvimg]'));
@@ -320,9 +322,8 @@ class Component extends DCLogic {
       rvTick = false;
       const vh = window.innerHeight;
       rvAll.forEach((el) => {
-        if (el.getAttribute('data-rv-state') === 'in') return;
         const r = el.getBoundingClientRect();
-        if (r.bottom < 0 || r.top < vh) { el.setAttribute('data-rv-state', 'in'); io.unobserve(el); }
+        if (r.bottom > 0 && r.top < vh) el.setAttribute('data-rv-state', 'in'); else el.removeAttribute('data-rv-state');
       });
     };
     window.addEventListener('scroll', () => { if (!rvTick) { rvTick = true; requestAnimationFrame(rvCatch); } }, { passive: true });
@@ -332,7 +333,7 @@ class Component extends DCLogic {
       const groups = new Map();
       document.querySelectorAll('[data-rv]').forEach((el) => { const p = el.parentElement; if (!groups.has(p)) groups.set(p, []); groups.get(p).push(el); });
       groups.forEach((els) => { if (els.length > 1) els.forEach((el, i) => { el.style.transitionDelay = Math.min(i * 90, 450) + 'ms'; }); });
-      const ioR = new IntersectionObserver((es) => { es.forEach((en) => { if (en.isIntersecting) { en.target.setAttribute('data-rv-state', 'in'); ioR.unobserve(en.target); } }); }, { threshold: 0.1 });
+      const ioR = new IntersectionObserver((es) => { es.forEach((en) => { if (en.isIntersecting) en.target.setAttribute('data-rv-state', 'in'); else en.target.removeAttribute('data-rv-state'); }); }, { threshold: 0.1 });
       document.querySelectorAll('[data-rule]').forEach((el) => ioR.observe(el));
       if (!rm) {
         const heads = Array.from(document.querySelectorAll('h2, section h1')).filter((h) => !h.closest('[data-hero]') && !h.hasAttribute('data-mask') && !h.querySelector('.wm-w') && h.textContent.trim().length && h.textContent.length < 160);
@@ -354,13 +355,13 @@ class Component extends DCLogic {
           });
           h.setAttribute('data-words', '1');
         });
-        const ioW = new IntersectionObserver((es) => { es.forEach((en) => { if (en.isIntersecting) { en.target.setAttribute('data-words-in', '1'); ioW.unobserve(en.target); } }); }, { threshold: 0.2 });
+        const ioW = new IntersectionObserver((es) => { es.forEach((en) => { if (en.isIntersecting) en.target.setAttribute('data-words-in', '1'); else en.target.removeAttribute('data-words-in'); }); }, { threshold: 0.2 });
         heads.forEach((h) => ioW.observe(h));
         let tickW = false;
-        window.addEventListener('scroll', () => { if (tickW) return; tickW = true; setTimeout(() => { tickW = false; const vh = window.innerHeight; heads.forEach((h) => { const r = h.getBoundingClientRect(); if (r.top < vh && r.bottom > 0) h.setAttribute('data-words-in', '1'); }); document.querySelectorAll('[data-rule]').forEach((el) => { const r = el.getBoundingClientRect(); if (r.top < vh && r.bottom > 0) el.setAttribute('data-rv-state', 'in'); }); }, 80); }, { passive: true });
+        window.addEventListener('scroll', () => { if (tickW) return; tickW = true; setTimeout(() => { tickW = false; const vh = window.innerHeight; heads.forEach((h) => { const r = h.getBoundingClientRect(); if (r.top < vh && r.bottom > 0) h.setAttribute('data-words-in', '1'); else h.removeAttribute('data-words-in'); }); document.querySelectorAll('[data-rule]').forEach((el) => { const r = el.getBoundingClientRect(); if (r.top < vh && r.bottom > 0) el.setAttribute('data-rv-state', 'in'); else el.removeAttribute('data-rv-state'); }); }, 80); }, { passive: true });
         setTimeout(() => heads.forEach((h) => { const r = h.getBoundingClientRect(); if (r.top < window.innerHeight && r.bottom > 0) h.setAttribute('data-words-in', '1'); }), 150);
       }
-      document.querySelectorAll('[data-acc-btn]').forEach((b) => b.addEventListener('click', () => { const it = b.closest('[data-acc-item]'); if (!it) return; if (it.hasAttribute('data-open')) it.removeAttribute('data-open'); else it.setAttribute('data-open', '1'); }));
+      document.querySelectorAll('[data-acc-btn]').forEach((b) => b.addEventListener('click', () => { const it = b.closest('[data-acc-item]'); if (!it) return; const wasOpen = it.hasAttribute('data-open'); document.querySelectorAll('[data-acc-item][data-open]').forEach((o) => o.removeAttribute('data-open')); if (!wasOpen) it.setAttribute('data-open', '1'); }));
       const cioK = new IntersectionObserver((es) => {
         es.forEach((en) => {
           if (!en.isIntersecting) return;
