@@ -10,6 +10,8 @@
 <helmet>
 <title>Bauträger · Das Wimmer, Wimmergasse 20</title>
 <meta name="description" content="Der Bauträger hinter dem Wimmer: W20-Development GmbH, ein Unternehmen der Venture Property Holding (VPH). Umgesetzte Maßnahmen und Unterlagen zum Projekt.">
+<link rel="canonical" href="https://daswimmer.vercel.app/bautraeger">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://daswimmer.vercel.app/#website","name":"Das Wimmer","url":"https://daswimmer.vercel.app/","inLanguage":"de-AT","creator":{"@id":"https://www.ad.boutique/#organization"}},{"@type":"WebPage","name":"Bauträger","url":"https://daswimmer.vercel.app/bautraeger","isPartOf":{"@id":"https://daswimmer.vercel.app/#website"},"creator":{"@id":"https://www.ad.boutique/#organization"}},{"@type":"Organization","@id":"https://www.ad.boutique/#organization","name":"Ad Boutique","legalName":"Ad Boutique Agency GmbH","url":"https://www.ad.boutique/","description":"Digitalagentur in Wien für Performance Marketing, Websites und Content, mit Schwerpunkt Immobilienmarketing.","address":{"@type":"PostalAddress","streetAddress":"Tuchlauben 13","postalCode":"1010","addressLocality":"Wien","addressCountry":"AT"},"knowsAbout":["Performance Marketing","Immobilienmarketing","Webdesign","Google Ads","Meta Ads"]}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
@@ -67,6 +69,18 @@ a:hover{color:#EB9E0C;}
 .wm-band-item .wm-arr{display:inline-block;transition:transform .5s cubic-bezier(.25,1,.25,1);}
 .wm-band:hover .wm-arr{transform:translateX(.15em);}
 @keyframes wmBand{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@media (max-width:1100px){
+  div[style*="grid-template-columns: 1.1fr 1fr"]{grid-template-columns:1fr !important;gap:44px !important;}
+  div[style*="grid-template-columns: minmax(0px, 1fr) minmax(0px, 1.4fr)"]{grid-template-columns:1fr !important;gap:28px !important;}
+}
+@media (max-width:900px){
+  div[style*="grid-template-columns: repeat(4, 1fr)"]{grid-template-columns:1fr 1fr !important;gap:28px !important;}
+  div[style*="grid-template-columns: minmax(0px, 1.4fr) minmax(0px, 1fr) auto"]{grid-template-columns:1fr auto !important;gap:6px 16px !important;}
+  div[style*="grid-template-columns: minmax(0px, 1.4fr) minmax(0px, 1fr) auto"] > span:nth-child(2){grid-column:1 / -1;order:3;}
+}
+@media (max-width:680px){
+  div[style*="grid-template-columns: repeat(4, 1fr)"]{grid-template-columns:1fr !important;}
+}
 </style>
 </helmet>
 <div style="background:#FAF9F6;color:#13233F;min-height:100vh;">
@@ -142,6 +156,7 @@ a:hover{color:#EB9E0C;}
     <div style="max-width:1360px;margin:0 auto;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;">
       <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;"><a href="/bautraeger" aria-label="Venture Property Holding" style="display:inline-flex;background:#FAF9F6;padding:8px 12px;"><img src="/assets/logo-vph.webp" width="1200" height="379" alt="VPH Venture Property Holding" style="display:block;height:30px;width:auto;"></a><p style="margin:0;font-size:11px;letter-spacing:0.1em;color:rgba(250,249,246,0.5);">© 2026 · Ein Projekt der Venture Property Holding GmbH · Renderings sind Symbolbilder, Änderungen vorbehalten</p></div>
       <a href="/" style="font-family:'Pluto','Outfit',sans-serif;font-size:11px;letter-spacing:0.2em;color:#FAF9F6;background-image:linear-gradient(#EB9E0C,#EB9E0C);background-repeat:no-repeat;background-position:0 100%;background-size:0% 1px;transition:background-size .5s cubic-bezier(.25,1,.25,1);" style-hover="background-size:100% 1px;color:#FAF9F6;">ZUR STARTSEITE</a>
+      <div style="width:100%;display:flex;justify-content:space-between;align-items:baseline;gap:18px 28px;flex-wrap:wrap;padding-top:18px;margin-top:6px;border-top:1px solid rgba(250,249,246,0.12);"><p style="margin:0;font-size:11px;letter-spacing:0.1em;color:rgba(250,249,246,0.5);">Made by <a href="https://www.ad.boutique/" target="_blank" rel="noopener" style="color:rgba(250,249,246,0.75);border-bottom:1px solid rgba(250,249,246,0.3);padding-bottom:2px;transition:color .45s cubic-bezier(.25,1,.25,1),border-color .45s cubic-bezier(.25,1,.25,1);" style-hover="color:#FAF9F6;border-bottom-color:#FAF9F6;">Ad Boutique</a></p><span style="display:flex;gap:28px;"><a href="/rechtliches#impressum" style="font-size:11px;letter-spacing:0.1em;color:rgba(250,249,246,0.7);transition:color .45s cubic-bezier(.25,1,.25,1);" style-hover="color:#FAF9F6;">Impressum</a><a href="/rechtliches#datenschutz" style="font-size:11px;letter-spacing:0.1em;color:rgba(250,249,246,0.7);transition:color .45s cubic-bezier(.25,1,.25,1);" style-hover="color:#FAF9F6;">Datenschutz</a></span></div>
     </div>
   </footer>
 </div>
